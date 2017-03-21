@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import {times} from 'lodash';
+import _ from 'lodash';
+import synth from './util/synth';
+import keyboardMap from './util/keyboardMap';
 
 const NOTES = [
   {
@@ -89,7 +91,9 @@ const Octave = styled.div`
 
 class OctaveContainer extends Component {
   handlePlay = note => {
-    console.log(note);
+    const {octave} = this.props;
+    synth.triggerAttackRelease(`${note}${octave}`);
+    console.log(`${note}${octave}`);
   };
   render() {
     return (
@@ -121,7 +125,17 @@ class KeyContainer extends Component {
 }
 
 class PianoContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      octaveOffset: 3,
+      playing: []
+    };
+  }
   componentWillMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keyup', this.handleKeyUp);
+
     if (navigator.requestMIDIAccess) {
       navigator
         .requestMIDIAccess({
@@ -132,6 +146,41 @@ class PianoContainer extends Component {
       console.warn('No MIDI support in your browser.');
     }
   }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keyup', this.handleKeyUp);
+  }
+  handleKeyDown = e => {
+    const keyCode = e.keycode || e.which;
+    const {octaveOffset} = this.state;
+    const noteMetadata = keyboardMap[keyCode];
+    if (noteMetadata) {
+      const {note, octaveBase} = noteMetadata;
+      const noteName = `${note}${octaveBase + octaveOffset}`;
+      if (!_.includes(this.state.playing, noteName)) {
+        synth.triggerAttack(noteName);
+        this.setState({
+          playing: _.concat(this.state.playing, noteName)
+        });
+      }
+    }
+  };
+  handleKeyUp = e => {
+    const keyCode = e.keycode || e.which;
+    const {octaveOffset, playing} = this.state;
+    const noteMetadata = keyboardMap[keyCode];
+    if (noteMetadata) {
+      const {note, octaveBase} = noteMetadata;
+      const noteName = `${note}${octaveBase + octaveOffset}`;
+      const foundNote = _.find(playing, note => note === noteName);
+      if (foundNote) {
+        synth.triggerRelease(foundNote);
+        this.setState({
+          playing: _.without(this.state.playing, foundNote)
+        });
+      }
+    }
+  };
   onMIDISuccess = midiAccess => {
     const inputs = midiAccess.inputs.values();
     for (let input of inputs) {
@@ -140,7 +189,7 @@ class PianoContainer extends Component {
   };
   onMIDIFailure = error => {
     console.log(
-      "No access to MIDI devices or your browser doesn't support WebMIDI API. Please use WebMIDIAPIShim " +
+      "No access to MIDI devices or your browser doesn't support WebMIDI API." +
         error
     );
   };
@@ -149,9 +198,12 @@ class PianoContainer extends Component {
   };
   render() {
     const {octaves} = this.props;
+    const {octaveOffset} = this.state;
     return (
       <Piano>
-        {times(octaves, i => <OctaveContainer key={i} />)}
+        {_.times(octaves, i => (
+          <OctaveContainer key={i} octave={i + octaveOffset} />
+        ))}
       </Piano>
     );
   }
