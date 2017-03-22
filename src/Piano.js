@@ -20,9 +20,6 @@ const Key = styled.div`
 const WhiteKey = styled(Key)`
   height: 200px;
   background-color: ${props => props.isPlaying ? 'blue' : 'white'};
-  &:hover {
-    background-color: ${props => props.isPlaying ? 'blue' : 'lightblue'};
-  }
 `;
 
 const BlackKey = styled(Key)`
@@ -33,9 +30,6 @@ const BlackKey = styled(Key)`
   margin-right: -15px;
   background-color: ${props => props.isPlaying ? 'blue' : 'black'};
   border: none;
-  &:hover {
-    background-color: ${props => props.isPlaying ? 'blue' : 'lightblue'};
-  }
 `;
 
 const Octave = styled.div`
@@ -43,6 +37,16 @@ const Octave = styled.div`
 `;
 
 class KeyContainer extends Component {
+  handleTouchStart = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.play(this.props.note);
+  };
+  handleTouchEnd = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.stop(this.props.note);
+  };
   handleMouseOver = e => {
     e.preventDefault();
     const {note, mouseDown} = this.props;
@@ -71,6 +75,8 @@ class KeyContainer extends Component {
   render() {
     return this.props.type === 'white'
       ? <WhiteKey
+          onTouchStart={this.handleTouchStart}
+          onTouchEnd={this.handleTouchEnd}
           onMouseOver={this.handleMouseOver}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
@@ -78,6 +84,8 @@ class KeyContainer extends Component {
           isPlaying={this.props.isPlaying}
         />
       : <BlackKey
+          onTouchStart={this.handleTouchStart}
+          onTouchEnd={this.handleTouchEnd}
           onMouseOver={this.handleMouseOver}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
@@ -137,7 +145,7 @@ class PianoContainer extends Component {
   }
   handlePlay = (noteName, velocity = 1) => {
     if (!_.includes(this.state.playing, noteName)) {
-      synth.triggerAttack(noteName, undefined, velocity);
+      synth.triggerAttack(noteName, '+0.05', velocity);
       this.setState({
         playing: _.concat(this.state.playing, noteName)
       });
