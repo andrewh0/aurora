@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PianoContainer from './Piano';
+import PianoContainer from './PianoContainer';
 import StartAudioContextButton from './StartAudioContextButton';
 
 class App extends Component {
