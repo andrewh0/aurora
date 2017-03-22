@@ -14,7 +14,7 @@ class PianoContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      octaveOffset: 3,
+      octaveOffset: 1,
       playing: [],
       mouseDown: false
     };

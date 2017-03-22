@@ -5,9 +5,9 @@ import StartAudioContextButton from './StartAudioContextButton';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <PianoContainer octaves={4} />
+      <div>
         <StartAudioContextButton />
+        <PianoContainer octaves={6} />
       </div>
     );
   }
