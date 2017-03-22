@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <PianoContainer octaves={3} />
+        <PianoContainer octaves={4} />
       </div>
     );
   }
