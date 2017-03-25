@@ -15,6 +15,8 @@ class PianoContainer extends Component {
     super(props);
     this.state = {
       octaveOffset: 1,
+      keyboardOctaveOffset: 2,
+      keyboardMidiVelocity: 64,
       playing: [],
       mouseDown: false
     };
@@ -38,40 +40,89 @@ class PianoContainer extends Component {
     window.removeEventListener('keyup', this.handleKeyUp);
   }
   handlePlay = (noteName, velocity = 1, mobile = false) => {
-    if (!_.includes(this.state.playing, noteName)) {
+    const {playing, sustaining} = this.state;
+    if (!_.includes(playing, noteName)) {
       synth.triggerAttack(noteName, mobile ? '+0.05' : null, velocity);
       this.setState({
-        playing: _.concat(this.state.playing, noteName)
+        playing: _.concat(playing, noteName)
       });
+    } else if (sustaining) {
+      synth.triggerAttack(noteName, mobile ? '+0.05' : null, velocity);
     }
+
   };
   handleStop = noteName => {
-    const {playing} = this.state;
+    const {playing, sustaining} = this.state;
     const foundNote = _.find(playing, note => note === noteName);
-    if (foundNote) {
+    if (foundNote && !sustaining) {
       synth.triggerRelease(foundNote);
       this.setState({
         playing: _.without(playing, foundNote)
       });
     }
   };
+  isAdjustingOctaveOrVelocity = (
+    keyCode,
+    keyboardOctaveOffset,
+    keyboardMidiVelocity
+  ) => {
+    if (keyCode === 90 && keyboardOctaveOffset > -3) {
+      // Z: octave down
+      this.setState({
+        keyboardOctaveOffset: Math.max(keyboardOctaveOffset - 1, -3)
+      });
+      return true;
+    } else if (keyCode === 88 && keyboardOctaveOffset < 3) {
+      // X: octave up
+      this.setState({
+        keyboardOctaveOffset: Math.min(keyboardOctaveOffset + 1, 3)
+      });
+      return true;
+    } else if (keyCode === 67 && keyboardMidiVelocity > 0) {
+      // C: velocity down
+      this.setState({
+        keyboardMidiVelocity: Math.max(keyboardMidiVelocity - 20, 0)
+      });
+      return true;
+    } else if (keyCode === 86 && keyboardMidiVelocity < 127) {
+      // V: velocity up
+      this.setState({
+        keyboardMidiVelocity: Math.min(keyboardMidiVelocity + 20, 127)
+      });
+      return true;
+    }
+    return false;
+  };
   handleKeyDown = e => {
     const keyCode = e.keycode || e.which;
-    const {octaveOffset} = this.state;
+    const {
+      octaveOffset,
+      keyboardMidiVelocity,
+      keyboardOctaveOffset
+    } = this.state;
+    if (
+      this.isAdjustingOctaveOrVelocity(
+        keyCode,
+        keyboardOctaveOffset,
+        keyboardMidiVelocity
+      )
+    ) {
+      return;
+    }
     const noteMetadata = keyboardMap[keyCode];
     if (noteMetadata) {
       const {note, octaveBase} = noteMetadata;
-      const noteName = `${note}${octaveBase + octaveOffset}`;
-      this.handlePlay(noteName);
+      const noteName = `${note}${octaveBase + octaveOffset + keyboardOctaveOffset}`;
+      this.handlePlay(noteName, getVelocityFromMidi(keyboardMidiVelocity));
     }
   };
   handleKeyUp = e => {
     const keyCode = e.keycode || e.which;
-    const {octaveOffset} = this.state;
+    const {octaveOffset, keyboardOctaveOffset} = this.state;
     const noteMetadata = keyboardMap[keyCode];
     if (noteMetadata) {
       const {note, octaveBase} = noteMetadata;
-      const noteName = `${note}${octaveBase + octaveOffset}`;
+      const noteName = `${note}${octaveBase + octaveOffset + keyboardOctaveOffset}`;
       this.handleStop(noteName);
     }
   };
@@ -81,6 +132,21 @@ class PianoContainer extends Component {
   };
   handleMouseUp = e => {
     this.setState({mouseDown: false});
+  };
+  handleMouseLeave = e => {
+    e.preventDefault();
+    this.setState({mouseDown: false});
+  };
+  handleSustain = velocity => {
+    if (!velocity) {
+      synth.releaseAll();
+      this.setState({
+        playing: [],
+        sustaining: false
+      });
+    } else {
+      this.setState({sustaining: true});
+    }
   };
   onMIDISuccess = midiAccess => {
     const inputs = midiAccess.inputs.values();
@@ -95,6 +161,9 @@ class PianoContainer extends Component {
   };
   onMIDIMessage = ({data: [command, note, velocity]}) => {
     switch (command) {
+      case 176:
+        this.handleSustain(velocity);
+        break;
       case 144:
         this.handlePlay(
           getNoteNameFromMidi(note),
@@ -112,7 +181,10 @@ class PianoContainer extends Component {
     const {octaves} = this.props;
     const {octaveOffset, mouseDown, playing} = this.state;
     return (
-      <Piano onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+      <Piano
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
+        onMouseLeave={this.handleMouseLeave}>
         {_.times(octaves, i => (
           <OctaveContainer
             key={i}

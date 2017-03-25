@@ -63,6 +63,16 @@ const keyboardMap = {
     note: 'C',
     key: 'k',
     octaveBase: 1
+  },
+  79: {
+    note: 'C#',
+    key: 'o',
+    octaveBase: 1
+  },
+  76: {
+    note: 'D',
+    key: 'l',
+    octaveBase: 1
   }
 };
 
