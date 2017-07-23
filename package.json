@@ -8,7 +8,7 @@
     "react-dom": "^15.4.2",
     "startaudiocontext": "^1.2.0",
     "styled-components": "^1.4.4",
-    "tone": "^0.9.0"
+    "tone": "^0.10.0"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
