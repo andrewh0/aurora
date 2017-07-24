@@ -28,9 +28,11 @@ class SynthProvider extends Component {
     return {synth: this.synth};
   }
   render() {
-    return (<div>
-      {this.props.children}
-    </div>);
+    return (
+      <div>
+        {this.props.children}
+      </div>
+    );
   }
 }
 

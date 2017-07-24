@@ -44,14 +44,21 @@ class PianoContainer extends Component {
   handlePlay = (noteName, velocity = 1, mobile = false) => {
     const {playing, sustaining} = this.state;
     if (!_.includes(playing, noteName)) {
-      this.context.synth.triggerAttack(noteName, mobile ? '+0.05' : null, velocity);
+      this.context.synth.triggerAttack(
+        noteName,
+        mobile ? '+0.05' : null,
+        velocity
+      );
       this.setState({
         playing: _.concat(playing, noteName)
       });
     } else if (sustaining) {
-      this.context.synth.triggerAttack(noteName, mobile ? '+0.05' : null, velocity);
+      this.context.synth.triggerAttack(
+        noteName,
+        mobile ? '+0.05' : null,
+        velocity
+      );
     }
-
   };
   handleStop = noteName => {
     const {playing, sustaining} = this.state;
@@ -114,7 +121,9 @@ class PianoContainer extends Component {
     const noteMetadata = keyboardMap[keyCode];
     if (noteMetadata) {
       const {note, octaveBase} = noteMetadata;
-      const noteName = `${note}${octaveBase + octaveOffset + keyboardOctaveOffset}`;
+      const noteName = `${note}${octaveBase +
+        octaveOffset +
+        keyboardOctaveOffset}`;
       this.handlePlay(noteName, getVelocityFromMidi(keyboardMidiVelocity));
     }
   };
@@ -124,7 +133,9 @@ class PianoContainer extends Component {
     const noteMetadata = keyboardMap[keyCode];
     if (noteMetadata) {
       const {note, octaveBase} = noteMetadata;
-      const noteName = `${note}${octaveBase + octaveOffset + keyboardOctaveOffset}`;
+      const noteName = `${note}${octaveBase +
+        octaveOffset +
+        keyboardOctaveOffset}`;
       this.handleStop(noteName);
     }
   };
@@ -187,7 +198,7 @@ class PianoContainer extends Component {
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
         onMouseLeave={this.handleMouseLeave}>
-        {_.times(octaves, i => (
+        {_.times(octaves, i =>
           <OctaveContainer
             key={i}
             octave={i + octaveOffset}
@@ -196,7 +207,7 @@ class PianoContainer extends Component {
             mouseDown={mouseDown}
             playing={playing}
           />
-        ))}
+        )}
       </Piano>
     );
   }
