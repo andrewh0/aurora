@@ -9,7 +9,11 @@ class SynthControl extends Component {
   };
 
   state = {
-    params: this.context.synth.get()
+    params: _.merge(
+      {},
+      this.context.synth.get(),
+      this.context.synth.get(['oscillator.spread', 'oscillator.count']) // HACK
+    )
   };
 
   updateSynth(path, value) {
@@ -43,6 +47,14 @@ class SynthControl extends Component {
     this.updateSynth('envelope.release', value);
   };
 
+  handleSpreadChange = value => {
+    this.updateSynth('oscillator.spread', value);
+  };
+
+  handleCountChange = value => {
+    this.updateSynth('oscillator.count', value);
+  };
+
   render() {
     const {params} = this.state;
     return (
@@ -58,12 +70,16 @@ class SynthControl extends Component {
         <DropDown
           label="Waveform"
           name="waveforms"
-          defaultValue="sawtooth"
+          value={params.oscillator.type}
           values={[
             {value: 'sawtooth', label: 'Sawtooth'},
             {value: 'sine', label: 'Sine'},
             {value: 'square', label: 'Square'},
-            {value: 'triangle', label: 'Triangle'}
+            {value: 'triangle', label: 'Triangle'},
+            {value: 'fatsawtooth', label: 'Fat Sawtooth'},
+            {value: 'fatsine', label: 'Fat Sine'},
+            {value: 'fatsquare', label: 'Fat Square'},
+            {value: 'fattriangle', label: 'Fat Triangle'}
           ]}
           onChange={this.handleWaveformChange}
         />
@@ -98,6 +114,22 @@ class SynthControl extends Component {
           max={2}
           step={0.001}
           label="Release"
+        />
+        <Slider
+          value={params.oscillator.spread}
+          onChange={this.handleSpreadChange}
+          min={0}
+          max={100}
+          step={1}
+          label="Spread"
+        />
+        <Slider
+          value={params.oscillator.count}
+          onChange={this.handleCountChange}
+          min={1}
+          max={8}
+          step={1}
+          label="Count"
         />
       </div>
     );

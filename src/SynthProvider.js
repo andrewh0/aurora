@@ -6,10 +6,10 @@ class SynthProvider extends Component {
     synth: PropTypes.object
   };
   static defaultProps = {
-    voices: 10,
+    voices: 16,
     opts: {
       oscillator: {
-        type: 'sawtooth'
+        type: 'fatsawtooth'
       },
       envelope: {
         attack: 0.01,
