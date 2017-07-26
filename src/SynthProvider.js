@@ -3,7 +3,8 @@ import Tone from 'tone';
 
 class SynthProvider extends Component {
   static childContextTypes = {
-    synth: PropTypes.object
+    synth: PropTypes.object,
+    filter: PropTypes.object
   };
   static defaultProps = {
     voices: 16,
@@ -19,13 +20,19 @@ class SynthProvider extends Component {
       }
     }
   };
+  filter = new Tone.Filter(200, 'lowpass', -12).toMaster();
+
   synth = new Tone.PolySynth(
     this.props.voices,
     Tone.Synth,
     this.props.opts
-  ).toMaster();
+  ).connect(this.filter);
+
   getChildContext() {
-    return {synth: this.synth};
+    return {
+      synth: this.synth,
+      filter: this.filter
+    };
   }
   render() {
     return (

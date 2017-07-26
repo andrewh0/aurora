@@ -13,7 +13,7 @@ class DropDown extends Component {
         <select name={name} onChange={this.handleChange} value={value}>
           {values.map(({value: v, label: valueLabel}, i) =>
             <option key={i} value={v}>
-              {valueLabel}
+              {valueLabel || v}
             </option>
           )}
         </select>
