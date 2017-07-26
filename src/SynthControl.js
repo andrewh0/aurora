@@ -200,19 +200,20 @@ class SynthControl extends Component {
             step={0.1}
             label="Q"
           />
-          <Slider
-            value={filter.gain}
-            onChange={this.handleFilterGainChange}
-            min={-12}
-            max={12}
-            step={1}
-            label="Gain"
-          />
+          {_.includes(['lowshelf', 'highshelf', 'peaking'], filter.type) &&
+            <Slider
+              value={filter.gain}
+              onChange={this.handleFilterGainChange}
+              min={-12}
+              max={12}
+              step={1}
+              label="Gain"
+            />}
           <DropDown
             label="Filter Rolloff"
             name="filter-rolloff"
             value={filter.rolloff}
-            values={[{value: -12}, {value: -24}, {value: -48}]}
+            values={[{value: -12}, {value: -24}, {value: -48}, {value: -96}]}
             onChange={this.handleFilterRolloffChange}
           />
         </div>
