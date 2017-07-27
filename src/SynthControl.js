@@ -37,6 +37,10 @@ class SynthControl extends Component {
     this.updateSynth('volume', value);
   };
 
+  handlePortamentoChange = value => {
+    this.updateSynth('portamento', value);
+  };
+
   handleWaveformChange = value => {
     this.updateSynth('oscillator.type', value);
   };
@@ -145,6 +149,14 @@ class SynthControl extends Component {
           max={2}
           step={0.001}
           label="Release"
+        />
+        <Slider
+          value={osc.portamento}
+          onChange={this.handlePortamentoChange}
+          min={0}
+          max={5}
+          step={0.01}
+          label="Portamento"
         />
         {enableSpreadControls && [
           <Slider
