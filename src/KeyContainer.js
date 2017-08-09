@@ -4,14 +4,14 @@ import styled from 'styled-components';
 const Key = styled.div`
   cursor: pointer;
   width: 40px;
-  border: 1px solid #5D627A;
+  border: 1px solid #5d627a;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 `;
 
 const WhiteKey = styled(Key)`
   height: 200px;
-  background-color: ${props => props.isPlaying ? '#B8E0FF' : '#F2F4FF'};
+  background-color: ${props => (props.isPlaying ? '#B8E0FF' : '#F2F4FF')};
 `;
 
 const BlackKey = styled(Key)`
@@ -22,8 +22,8 @@ const BlackKey = styled(Key)`
   margin-right: -15px;
   border-width: 2px;
   border-top-width: 1px;
-  border-color: ${props => props.isPlaying ? '#5D627A' : '#0E0F14'};
-  background-color: ${props => props.isPlaying ? '#B8E0FF' : '#0E0F14'};
+  border-color: ${props => (props.isPlaying ? '#5D627A' : '#0E0F14')};
+  background-color: ${props => (props.isPlaying ? '#B8E0FF' : '#0E0F14')};
 `;
 
 class KeyContainer extends Component {

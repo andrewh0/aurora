@@ -6,9 +6,7 @@ import keyboardMap from './util/keyboardMap';
 import {getNoteNameFromMidi, getVelocityFromMidi} from './util/notes';
 import OctaveContainer from './OctaveContainer';
 
-const Piano = styled.div`
-  display: flex;
-`;
+const Piano = styled.div`display: flex;`;
 
 class PianoContainer extends Component {
   static contextTypes = {
@@ -198,7 +196,8 @@ class PianoContainer extends Component {
       <Piano
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
-        onMouseLeave={this.handleMouseLeave}>
+        onMouseLeave={this.handleMouseLeave}
+      >
         {_.times(octaves, i =>
           <OctaveContainer
             key={i}
