@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
-const Key = styled.div`
+const KeyWrapper = styled.div`
   cursor: pointer;
   width: 40px;
   border: 1px solid #5d627a;
@@ -9,12 +9,12 @@ const Key = styled.div`
   border-bottom-right-radius: 4px;
 `;
 
-const WhiteKey = styled(Key)`
+const WhiteKey = styled(KeyWrapper)`
   height: 200px;
   background-color: ${props => (props.isPlaying ? '#B8E0FF' : '#F2F4FF')};
 `;
 
-const BlackKey = styled(Key)`
+const BlackKey = styled(KeyWrapper)`
   z-index: 1;
   width: 30px;
   height: 120px;
@@ -26,7 +26,7 @@ const BlackKey = styled(Key)`
   background-color: ${props => (props.isPlaying ? '#B8E0FF' : '#0E0F14')};
 `;
 
-class KeyContainer extends Component {
+class Key extends Component {
   handleTouchStart = e => {
     e.preventDefault();
     e.stopPropagation();
@@ -85,4 +85,4 @@ class KeyContainer extends Component {
   }
 }
 
-export default KeyContainer;
+export default Key;

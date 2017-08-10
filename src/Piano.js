@@ -4,15 +4,15 @@ import styled from 'styled-components';
 import _ from 'lodash';
 import keyboardMap from './util/keyboardMap';
 import {getNoteNameFromMidi, getVelocityFromMidi} from './util/notes';
-import OctaveContainer from './OctaveContainer';
+import Octave from './Octave';
 
-const Piano = styled.div`display: flex;`;
+const PianoWrapper = styled.div`display: flex;`;
 
 const mapStateToProps = ({oscillator: {toneRef: synth}, filter}) => ({
   synth
 });
 
-class UnconnectedPianoContainer extends Component {
+class UnconnectedPiano extends Component {
   state = {
     octaveOffset: 1,
     keyboardOctaveOffset: 2,
@@ -186,12 +186,12 @@ class UnconnectedPianoContainer extends Component {
     const {octaves} = this.props;
     const {octaveOffset, mouseDown, playing} = this.state;
     return (
-      <Piano
+      <PianoWrapper
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
         onMouseLeave={this.handleMouseLeave}>
         {_.times(octaves, i =>
-          <OctaveContainer
+          <Octave
             key={i}
             octave={i + octaveOffset}
             onPlay={this.handlePlay}
@@ -200,11 +200,11 @@ class UnconnectedPianoContainer extends Component {
             playing={playing}
           />
         )}
-      </Piano>
+      </PianoWrapper>
     );
   }
 }
 
-const PianoContainer = connect(mapStateToProps)(UnconnectedPianoContainer);
+const Piano = connect(mapStateToProps)(UnconnectedPiano);
 
-export default PianoContainer;
+export default Piano;

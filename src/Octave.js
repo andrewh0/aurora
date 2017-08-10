@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 import {includes} from 'lodash';
 import styled from 'styled-components';
 import {NOTES} from './util/notes';
-import KeyContainer from './KeyContainer';
+import Key from './Key';
 
-const Octave = styled.div`display: flex;`;
+const OctaveWrapper = styled.div`display: flex;`;
 
-class OctaveContainer extends Component {
+class Octave extends Component {
   render() {
     const {onPlay, onStop, mouseDown, octave, playing} = this.props;
     return (
-      <Octave>
+      <OctaveWrapper>
         {NOTES.map(({noteName, color}, i) =>
-          <KeyContainer
+          <Key
             key={i}
             type={color}
             onPlay={onPlay}
@@ -22,9 +22,9 @@ class OctaveContainer extends Component {
             isPlaying={includes(playing, `${noteName}${octave}`)}
           />
         )}
-      </Octave>
+      </OctaveWrapper>
     );
   }
 }
 
-export default OctaveContainer;
+export default Octave;
