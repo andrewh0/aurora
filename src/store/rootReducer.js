@@ -6,13 +6,15 @@ import {filter} from './filter';
 import {distortion} from './distortion';
 import {phaser} from './phaser';
 import {chorus} from './chorus';
+import {equalizer} from './equalizer';
 
 const rootReducer = combineReducers({
   oscillator,
   filter,
   distortion,
   phaser,
-  chorus
+  chorus,
+  equalizer
 });
 
 export default rootReducer;
