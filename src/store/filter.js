@@ -1,6 +1,5 @@
-import {assocIn} from 'icepick';
 import Tone from 'tone';
-import {toStringPath} from '../util/path';
+import {createToneUpdater, moduleUpdateReducer} from './util';
 
 const UPDATE_FILTER = 'UPDATE_FILTER';
 
@@ -11,27 +10,12 @@ const filterInitialState = {
   ...defaultFilter.get()
 };
 
-function updateFilterState(path, value) {
-  return {
-    type: UPDATE_FILTER,
-    payload: {
-      path,
-      value
-    }
-  };
-}
-
-function updateFilter(path, value) {
-  return (dispatch, getState) => {
-    getState().filter.toneRef.set(toStringPath(path), value);
-    dispatch(updateFilterState(path, value));
-  };
-}
+const updateFilter = createToneUpdater(['filter', 'toneRef'], UPDATE_FILTER);
 
 function filter(filterState = filterInitialState, action) {
   switch (action.type) {
     case UPDATE_FILTER:
-      return assocIn(filterState, action.payload.path, action.payload.value);
+      return moduleUpdateReducer(filterState, action);
     default:
       return filterState;
   }
