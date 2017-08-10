@@ -10,31 +10,40 @@ const mapStateToProps = ({
   distortion: {toneRef: distortion},
   phaser: {toneRef: phaser},
   chorus: {toneRef: chorus},
-  equalizer: {toneRef: equalizer}
+  equalizer: {toneRef: equalizer},
+  reverb: {toneRef: reverb}
 }) => ({
   synth,
   filter,
   distortion,
   phaser,
   chorus,
-  equalizer
+  equalizer,
+  reverb
 });
 
 class UnconnectedSynthRouter extends Component {
-  reverb = new Tone.Freeverb().set('wet', 0);
   delay = new Tone.FeedbackDelay().set('wet', 0);
   compressor = new Tone.Compressor();
   analyzer = new Tone.Analyser();
 
   componentWillMount() {
-    const {synth, filter, distortion, phaser, chorus, equalizer} = this.props;
+    const {
+      synth,
+      filter,
+      distortion,
+      phaser,
+      chorus,
+      equalizer,
+      reverb
+    } = this.props;
     synth.chain(
       filter,
       distortion,
       phaser,
       chorus,
       equalizer,
-      this.reverb,
+      reverb,
       this.delay,
       this.compressor,
       this.analyzer,
