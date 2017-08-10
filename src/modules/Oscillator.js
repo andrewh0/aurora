@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Slider from '../ui/Slider';
 import DropDown from '../ui/DropDown';
 import {isFat} from '../util/synth';
+import {toArrayPath} from '../util/path';
+import {updateOscillator} from '../store/oscillator';
 
-class Oscillator extends Component {
+const mapStateToProps = ({
+  oscillator: {oscillator, volume, envelope, portamento}
+}) => ({oscillator, volume, envelope, portamento});
+
+const mapDispatchToProps = dispatch => ({dispatch});
+
+class UnconnectedOscillator extends Component {
   updateSynth = (path, value) => {
-    this.props.updateSynth(path, value);
+    this.props.dispatch(updateOscillator(toArrayPath(path), value));
   };
   handleVolumeChange = value => {
     this.updateSynth('volume', value);
@@ -43,13 +52,13 @@ class Oscillator extends Component {
     this.updateSynth('oscillator.count', value);
   };
   render() {
-    const {osc} = this.props;
-    const enableSpreadControls = isFat(osc.oscillator.type);
+    const {oscillator, volume, envelope, portamento} = this.props;
+    const enableSpreadControls = isFat(oscillator.type);
     return (
       <div className="filter-controls">
         <h1>Oscillator Controls</h1>
         <Slider
-          value={osc.volume}
+          value={volume}
           onChange={this.handleVolumeChange}
           min={-12}
           max={12}
@@ -59,7 +68,7 @@ class Oscillator extends Component {
         <DropDown
           label="Waveform"
           name="waveforms"
-          value={osc.oscillator.type}
+          value={oscillator.type}
           values={[
             {value: 'sawtooth', label: 'Sawtooth'},
             {value: 'sine', label: 'Sine'},
@@ -73,7 +82,7 @@ class Oscillator extends Component {
           onChange={this.handleWaveformChange}
         />
         <Slider
-          value={osc.envelope.attack}
+          value={envelope.attack}
           onChange={this.handleAttackChange}
           min={0.005}
           max={1}
@@ -81,7 +90,7 @@ class Oscillator extends Component {
           label="Attack"
         />
         <Slider
-          value={osc.envelope.decay}
+          value={envelope.decay}
           onChange={this.handleDecayChange}
           min={0.005}
           max={1}
@@ -89,7 +98,7 @@ class Oscillator extends Component {
           label="Decay"
         />
         <Slider
-          value={osc.envelope.sustain}
+          value={envelope.sustain}
           onChange={this.handleSustainChange}
           min={0}
           max={1}
@@ -97,7 +106,7 @@ class Oscillator extends Component {
           label="Sustain"
         />
         <Slider
-          value={osc.envelope.release}
+          value={envelope.release}
           onChange={this.handleReleaseChange}
           min={0.2}
           max={2}
@@ -105,7 +114,7 @@ class Oscillator extends Component {
           label="Release"
         />
         <Slider
-          value={osc.portamento}
+          value={portamento}
           onChange={this.handlePortamentoChange}
           min={0}
           max={5}
@@ -115,7 +124,7 @@ class Oscillator extends Component {
         {enableSpreadControls && [
           <Slider
             key="spread"
-            value={osc.oscillator.spread}
+            value={oscillator.spread}
             onChange={this.handleSpreadChange}
             min={0}
             max={100}
@@ -124,7 +133,7 @@ class Oscillator extends Component {
           />,
           <Slider
             key="count"
-            value={osc.oscillator.count}
+            value={oscillator.count}
             onChange={this.handleCountChange}
             min={1}
             max={8}
@@ -136,5 +145,9 @@ class Oscillator extends Component {
     );
   }
 }
+
+const Oscillator = connect(mapStateToProps, mapDispatchToProps)(
+  UnconnectedOscillator
+);
 
 export default Oscillator;

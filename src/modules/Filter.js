@@ -1,40 +1,49 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
+import {connect} from 'react-redux';
 import DropDown from '../ui/DropDown';
 import Slider from '../ui/Slider';
+import {updateFilter} from '../store/filter';
+import {toArrayPath} from '../util/path';
 
-class Filter extends Component {
+const mapStateToProps = ({filter: {frequency, gain, Q, rolloff, type}}) => ({
+  frequency,
+  gain,
+  Q,
+  rolloff,
+  type
+});
+
+const mapDispatchToProps = dispatch => ({dispatch});
+
+class UnconnectedFilter extends Component {
   updateFilter = (path, value) => {
-    this.props.updateFilter(path, value);
+    this.props.dispatch(updateFilter(toArrayPath(path), value));
   };
   handleFilterTypeChange = value => {
     this.updateFilter('type', value);
   };
-
   handleFilterFrequencyChange = value => {
     this.updateFilter('frequency', value);
   };
-
   handleFilterQChange = value => {
     this.updateFilter('Q', value);
   };
-
   handleFilterRolloffChange = value => {
     this.updateFilter('rolloff', value);
   };
   handleFilterGainChange = value => {
     this.updateFilter('gain', value);
   };
-
   render() {
-    const {filter} = this.props;
+    const {type, frequency, Q, gain, rolloff} = this.props;
     return (
       <div className="filter-controls">
         <h1>Filter Controls</h1>
         <DropDown
           label="Filter Type"
           name="filter-type"
-          value={filter.type}
+          value={type}
           values={[
             {value: 'lowpass', label: 'Low Pass'},
             {value: 'highpass', label: 'High Pass'},
@@ -48,7 +57,7 @@ class Filter extends Component {
           onChange={this.handleFilterTypeChange}
         />
         <Slider
-          value={filter.frequency}
+          value={frequency}
           onChange={this.handleFilterFrequencyChange}
           min={30}
           max={22000}
@@ -56,16 +65,16 @@ class Filter extends Component {
           label="Frequency"
         />
         <Slider
-          value={filter.Q}
+          value={Q}
           onChange={this.handleFilterQChange}
           min={0.1}
           max={18}
           step={0.1}
           label="Q"
         />
-        {_.includes(['lowshelf', 'highshelf', 'peaking'], filter.type) &&
+        {_.includes(['lowshelf', 'highshelf', 'peaking'], type) &&
           <Slider
-            value={filter.gain}
+            value={gain}
             onChange={this.handleFilterGainChange}
             min={-12}
             max={12}
@@ -75,7 +84,7 @@ class Filter extends Component {
         <DropDown
           label="Filter Rolloff"
           name="filter-rolloff"
-          value={filter.rolloff}
+          value={rolloff}
           values={[{value: -12}, {value: -24}, {value: -48}, {value: -96}]}
           onChange={this.handleFilterRolloffChange}
         />
@@ -83,5 +92,7 @@ class Filter extends Component {
     );
   }
 }
+
+const Filter = connect(mapStateToProps, mapDispatchToProps)(UnconnectedFilter);
 
 export default Filter;

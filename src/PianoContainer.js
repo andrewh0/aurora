@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
 import _ from 'lodash';
 import keyboardMap from './util/keyboardMap';
@@ -8,20 +8,18 @@ import OctaveContainer from './OctaveContainer';
 
 const Piano = styled.div`display: flex;`;
 
-class PianoContainer extends Component {
-  static contextTypes = {
-    synth: PropTypes.object
+const mapStateToProps = ({oscillator: {toneRef: synth}, filter}) => ({
+  synth
+});
+
+class UnconnectedPianoContainer extends Component {
+  state = {
+    octaveOffset: 1,
+    keyboardOctaveOffset: 2,
+    keyboardMidiVelocity: 64,
+    playing: [],
+    mouseDown: false
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      octaveOffset: 1,
-      keyboardOctaveOffset: 2,
-      keyboardMidiVelocity: 64,
-      playing: [],
-      mouseDown: false
-    };
-  }
   componentWillMount() {
     window.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keyup', this.handleKeyUp);
@@ -42,28 +40,22 @@ class PianoContainer extends Component {
   }
   handlePlay = (noteName, velocity = 1, mobile = false) => {
     const {playing, sustaining} = this.state;
+    const {synth} = this.props;
     if (!_.includes(playing, noteName)) {
-      this.context.synth.triggerAttack(
-        noteName,
-        mobile ? '+0.05' : null,
-        velocity
-      );
+      synth.triggerAttack(noteName, mobile ? '+0.05' : null, velocity);
       this.setState({
         playing: _.concat(playing, noteName)
       });
     } else if (sustaining) {
-      this.context.synth.triggerAttack(
-        noteName,
-        mobile ? '+0.05' : null,
-        velocity
-      );
+      synth.triggerAttack(noteName, mobile ? '+0.05' : null, velocity);
     }
   };
   handleStop = noteName => {
     const {playing, sustaining} = this.state;
+    const {synth} = this.props;
     const foundNote = _.find(playing, note => note === noteName);
     if (foundNote && !sustaining) {
-      this.context.synth.triggerRelease(foundNote);
+      synth.triggerRelease(foundNote);
       this.setState({
         playing: _.without(playing, foundNote)
       });
@@ -150,8 +142,9 @@ class PianoContainer extends Component {
     this.setState({mouseDown: false});
   };
   handleSustain = velocity => {
+    const {synth} = this.props;
     if (!velocity) {
-      this.context.synth.releaseAll();
+      synth.releaseAll();
       this.setState({
         playing: [],
         sustaining: false
@@ -196,8 +189,7 @@ class PianoContainer extends Component {
       <Piano
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
-        onMouseLeave={this.handleMouseLeave}
-      >
+        onMouseLeave={this.handleMouseLeave}>
         {_.times(octaves, i =>
           <OctaveContainer
             key={i}
@@ -212,5 +204,7 @@ class PianoContainer extends Component {
     );
   }
 }
+
+const PianoContainer = connect(mapStateToProps)(UnconnectedPianoContainer);
 
 export default PianoContainer;
