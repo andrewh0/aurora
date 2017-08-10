@@ -8,6 +8,7 @@ import {phaser} from './phaser';
 import {chorus} from './chorus';
 import {equalizer} from './equalizer';
 import {reverb} from './reverb';
+import {delay} from './delay';
 
 const rootReducer = combineReducers({
   oscillator,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   phaser,
   chorus,
   equalizer,
-  reverb
+  reverb,
+  delay
 });
 
 export default rootReducer;

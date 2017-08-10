@@ -8,6 +8,7 @@ import Phaser from './modules/effects/Phaser';
 import Chorus from './modules/effects/Chorus';
 import Equalizer from './modules/effects/Equalizer';
 import Reverb from './modules/effects/Reverb';
+import Delay from './modules/effects/Delay';
 
 class SynthControl extends Component {
   render() {
@@ -20,6 +21,7 @@ class SynthControl extends Component {
         <Chorus />
         <Equalizer />
         <Reverb />
+        <Delay />
       </div>
     );
   }
