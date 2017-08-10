@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import DropDown from '../../ui/DropDown';
 import Slider from '../../ui/Slider';
+import PercentSlider from '../../ui/PercentSlider';
 import {updateDistortion} from '../../store/distortion';
 
 type DistortionOversample = 'none' | '2x' | '4x';
@@ -55,12 +56,9 @@ class UnconnectedDistortion extends Component {
           ]}
           onChange={this.handleDistortionOversampleChange}
         />
-        <Slider
+        <PercentSlider
           value={wet}
           onChange={this.handleDistortionWetChange}
-          min={0}
-          max={1}
-          step={0.1}
           label="Dry/Wet"
         />
       </div>
