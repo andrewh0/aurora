@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import Tone from 'tone';
@@ -20,20 +22,21 @@ const Button = styled.button`
 `;
 
 class StartAudioContextButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isHidden: false
-    };
-  }
+  state = {
+    isHidden: false
+  };
   componentWillMount() {
-    document.body.classList.add('no-scroll');
+    if (document.body) {
+      document.body.classList.add('no-scroll');
+    }
   }
-  handleClick = e => {
+  handleClick = (e: Event): void => {
     e.preventDefault();
     StartAudioContext(Tone.context, null);
     this.setState({isHidden: true});
-    document.body.classList.remove('no-scroll');
+    if (document.body) {
+      document.body.classList.remove('no-scroll');
+    }
   };
   render() {
     return (

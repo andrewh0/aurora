@@ -1,5 +1,9 @@
+// @flow
+
 import Tone from 'tone';
 import {createToneUpdater, moduleUpdateReducer} from './util';
+
+import type {StandardAction} from './util';
 
 const UPDATE_OSC = 'UPDATE_OSC';
 
@@ -41,7 +45,10 @@ const updateOscillator = createToneUpdater(
   UPDATE_OSC
 );
 
-function oscillator(oscillatorState = oscillatorInitialState, action) {
+function oscillator(
+  oscillatorState: Object = oscillatorInitialState,
+  action: StandardAction
+): Object {
   switch (action.type) {
     case UPDATE_OSC:
       return moduleUpdateReducer(oscillatorState, action);

@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Slider from '../ui/Slider';
@@ -10,7 +12,7 @@ const mapStateToProps = ({
   oscillator: {oscillator, volume, envelope, portamento}
 }) => ({oscillator, volume, envelope, portamento});
 
-const mapDispatchToProps = dispatch => ({dispatch});
+const mapDispatchToProps = (dispatch: Function): Object => ({dispatch});
 
 class UnconnectedOscillator extends Component {
   updateSynth = (path, value) => {

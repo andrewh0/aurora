@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import {includes} from 'lodash';
 import styled from 'styled-components';

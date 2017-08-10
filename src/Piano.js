@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
@@ -18,7 +20,8 @@ class UnconnectedPiano extends Component {
     keyboardOctaveOffset: 2,
     keyboardMidiVelocity: 64,
     playing: [],
-    mouseDown: false
+    mouseDown: false,
+    sustaining: false
   };
   componentWillMount() {
     window.addEventListener('keydown', this.handleKeyDown);
@@ -164,7 +167,7 @@ class UnconnectedPiano extends Component {
       `No access to MIDI devices or your browser doesn't support WebMIDI API. ${error}`
     );
   };
-  onMIDIMessage = ({data: [command, note, velocity]}) => {
+  onMIDIMessage = ({data: [command, note, velocity]}): void => {
     switch (command) {
       case 176:
         this.handleSustain(velocity);

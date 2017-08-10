@@ -1,3 +1,5 @@
+// @flow
+
 const NOTES = [
   {
     noteName: 'C',
@@ -49,12 +51,13 @@ const NOTES = [
   }
 ];
 
-const getNoteNameFromMidi = midiNote => {
+const getNoteNameFromMidi = (midiNote: number): string => {
   const octave = Math.floor(midiNote / 12);
   const name = NOTES[midiNote % 12].noteName;
   return `${name}${octave}`;
 };
 
-const getVelocityFromMidi = midiVelocity => midiVelocity / 127;
+const getVelocityFromMidi = (midiVelocity: number): number =>
+  midiVelocity / 127;
 
 export {NOTES, getNoteNameFromMidi, getVelocityFromMidi};

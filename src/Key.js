@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
@@ -27,39 +29,39 @@ const BlackKey = styled(KeyWrapper)`
 `;
 
 class Key extends Component {
-  handleTouchStart = e => {
+  handleTouchStart = (e: Event): void => {
     e.preventDefault();
     e.stopPropagation();
-    this.play(this.props.note, null, true);
+    this.play(this.props.note);
   };
-  handleTouchEnd = e => {
+  handleTouchEnd = (e: Event): void => {
     e.preventDefault();
     e.stopPropagation();
     this.stop(this.props.note);
   };
-  handleMouseOver = e => {
+  handleMouseOver = (e: Event): void => {
     e.preventDefault();
     const {note, mouseDown} = this.props;
     if (mouseDown) {
       this.play(note);
     }
   };
-  handleMouseDown = e => {
+  handleMouseDown = (e: Event): void => {
     e.preventDefault();
     this.play(this.props.note);
   };
-  handleMouseUp = e => {
+  handleMouseUp = (e: Event): void => {
     e.preventDefault();
     this.stop(this.props.note);
   };
-  handleMouseOut = e => {
+  handleMouseOut = (e: Event): void => {
     e.preventDefault();
     this.stop(this.props.note);
   };
-  play = note => {
+  play = (note: string): void => {
     this.props.onPlay(note);
   };
-  stop = note => {
+  stop = (note: string): void => {
     this.props.onStop(note);
   };
   render() {

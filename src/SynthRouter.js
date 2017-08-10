@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import Tone from 'tone';
 import {connect} from 'react-redux';

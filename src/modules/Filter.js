@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import {includes} from 'lodash';
 import {connect} from 'react-redux';
@@ -6,7 +8,9 @@ import Slider from '../ui/Slider';
 import {updateFilter} from '../store/filter';
 import {toArrayPath} from '../util/path';
 
-const mapStateToProps = ({filter: {frequency, gain, Q, rolloff, type}}) => ({
+const mapStateToProps = ({
+  filter: {frequency, gain, Q, rolloff, type}
+}): Object => ({
   frequency,
   gain,
   Q,
@@ -14,7 +18,7 @@ const mapStateToProps = ({filter: {frequency, gain, Q, rolloff, type}}) => ({
   type
 });
 
-const mapDispatchToProps = dispatch => ({dispatch});
+const mapDispatchToProps = (dispatch: Function): Object => ({dispatch});
 
 class UnconnectedFilter extends Component {
   updateFilter = (path, value) => {

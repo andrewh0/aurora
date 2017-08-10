@@ -1,10 +1,12 @@
+// @flow
+
 import React, {Component} from 'react';
 
 class Slider extends Component {
   state = {
     value: this.props.value
   };
-  handleChange = e => {
+  handleChange = (e: Event & {target: HTMLInputElement}) => {
     this.props.onChange(+e.target.value);
     this.setState({value: +e.target.value});
   };

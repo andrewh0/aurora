@@ -1,7 +1,9 @@
+// @flow
+
 import React, {Component} from 'react';
 
 class DropDown extends Component {
-  handleChange = e => {
+  handleChange = (e: Event & {target: HTMLInputElement}) => {
     e.target.blur();
     this.props.onChange(e.target.value);
   };

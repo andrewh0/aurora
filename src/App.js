@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import Piano from './Piano';
 import StartAudioContextButton from './StartAudioContextButton';

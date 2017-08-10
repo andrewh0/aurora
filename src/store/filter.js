@@ -1,5 +1,9 @@
+// @flow
+
 import Tone from 'tone';
 import {createToneUpdater, moduleUpdateReducer} from './util';
+
+import type {StandardAction} from './util';
 
 const UPDATE_FILTER = 'UPDATE_FILTER';
 
@@ -12,7 +16,10 @@ const filterInitialState = {
 
 const updateFilter = createToneUpdater(['filter', 'toneRef'], UPDATE_FILTER);
 
-function filter(filterState = filterInitialState, action) {
+function filter(
+  filterState: Object = filterInitialState,
+  action: StandardAction
+): Object {
   switch (action.type) {
     case UPDATE_FILTER:
       return moduleUpdateReducer(filterState, action);
