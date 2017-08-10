@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import _ from 'lodash';
+import {includes} from 'lodash';
 import styled from 'styled-components';
 import {NOTES} from './util/notes';
 import KeyContainer from './KeyContainer';
@@ -19,7 +19,7 @@ class OctaveContainer extends Component {
             onStop={onStop}
             mouseDown={mouseDown}
             note={`${noteName}${octave}`}
-            isPlaying={_.includes(playing, `${noteName}${octave}`)}
+            isPlaying={includes(playing, `${noteName}${octave}`)}
           />
         )}
       </Octave>

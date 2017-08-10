@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import _ from 'lodash';
+import {includes} from 'lodash';
 import {connect} from 'react-redux';
 import DropDown from '../ui/DropDown';
 import Slider from '../ui/Slider';
@@ -72,7 +72,7 @@ class UnconnectedFilter extends Component {
           step={0.1}
           label="Q"
         />
-        {_.includes(['lowshelf', 'highshelf', 'peaking'], type) &&
+        {includes(['lowshelf', 'highshelf', 'peaking'], type) &&
           <Slider
             value={gain}
             onChange={this.handleFilterGainChange}
