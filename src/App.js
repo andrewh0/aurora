@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PianoContainer from './PianoContainer';
 import StartAudioContextButton from './StartAudioContextButton';
-import SynthProvider from './SynthProvider';
+import SynthRouter from './SynthRouter';
 import SynthControl from './SynthControl';
 
 class App extends Component {
@@ -9,10 +9,10 @@ class App extends Component {
     return (
       <div>
         <StartAudioContextButton />
-        <SynthProvider>
+        <SynthRouter>
           <PianoContainer octaves={6} />
           <SynthControl />
-        </SynthProvider>
+        </SynthRouter>
       </div>
     );
   }

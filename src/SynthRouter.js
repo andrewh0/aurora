@@ -10,7 +10,7 @@ const mapStateToProps = ({
   filter
 });
 
-class UnconnectedSynthProvider extends Component {
+class UnconnectedSynthRouter extends Component {
   distortion = new Tone.Distortion().set('wet', 0);
   phaser = new Tone.Phaser().set('wet', 0);
   chorus = new Tone.Chorus().set('wet', 0);
@@ -44,6 +44,6 @@ class UnconnectedSynthProvider extends Component {
   }
 }
 
-const SynthProvider = connect(mapStateToProps)(UnconnectedSynthProvider);
+const SynthRouter = connect(mapStateToProps)(UnconnectedSynthRouter);
 
-export default SynthProvider;
+export default SynthRouter;
