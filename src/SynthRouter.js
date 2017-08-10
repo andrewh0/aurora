@@ -6,14 +6,15 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = ({
   oscillator: {toneRef: synth},
-  filter: {toneRef: filter}
+  filter: {toneRef: filter},
+  distortion: {toneRef: distortion}
 }) => ({
   synth,
-  filter
+  filter,
+  distortion
 });
 
 class UnconnectedSynthRouter extends Component {
-  distortion = new Tone.Distortion().set('wet', 0);
   phaser = new Tone.Phaser().set('wet', 0);
   chorus = new Tone.Chorus().set('wet', 0);
   equalizer = new Tone.EQ3();
@@ -23,10 +24,10 @@ class UnconnectedSynthRouter extends Component {
   analyzer = new Tone.Analyser();
 
   componentWillMount() {
-    const {synth, filter} = this.props;
+    const {synth, filter, distortion} = this.props;
     synth.chain(
       filter,
-      this.distortion,
+      distortion,
       this.phaser,
       this.chorus,
       this.equalizer,
