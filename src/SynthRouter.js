@@ -13,7 +13,8 @@ const mapStateToProps = ({
   equalizer: {toneRef: equalizer},
   reverb: {toneRef: reverb},
   delay: {toneRef: delay},
-  compressor: {toneRef: compressor}
+  compressor: {toneRef: compressor},
+  analyzer: {toneRef: analyzer}
 }) => ({
   synth,
   filter,
@@ -23,12 +24,13 @@ const mapStateToProps = ({
   equalizer,
   reverb,
   delay,
-  compressor
+  compressor,
+  analyzer
 });
 
-class UnconnectedSynthRouter extends Component {
-  analyzer = new Tone.Analyser();
+const mapDispatchToProps = (dispatch: Function): Object => ({dispatch});
 
+class UnconnectedSynthRouter extends Component {
   componentWillMount() {
     const {
       synth,
@@ -39,7 +41,8 @@ class UnconnectedSynthRouter extends Component {
       equalizer,
       reverb,
       delay,
-      compressor
+      compressor,
+      analyzer
     } = this.props;
     synth.chain(
       filter,
@@ -50,7 +53,7 @@ class UnconnectedSynthRouter extends Component {
       reverb,
       delay,
       compressor,
-      this.analyzer,
+      analyzer,
       Tone.Master
     );
   }
@@ -63,6 +66,8 @@ class UnconnectedSynthRouter extends Component {
   }
 }
 
-const SynthRouter = connect(mapStateToProps)(UnconnectedSynthRouter);
+const SynthRouter = connect(mapStateToProps, mapDispatchToProps)(
+  UnconnectedSynthRouter
+);
 
 export default SynthRouter;

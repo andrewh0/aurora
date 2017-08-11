@@ -10,6 +10,7 @@ import {equalizer} from './equalizer';
 import {reverb} from './reverb';
 import {delay} from './delay';
 import {compressor} from './compressor';
+import {analyzer} from './analyzer';
 
 const rootReducer = combineReducers({
   oscillator,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   equalizer,
   reverb,
   delay,
-  compressor
+  compressor,
+  analyzer
 });
 
 export default rootReducer;

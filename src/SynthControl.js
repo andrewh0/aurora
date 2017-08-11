@@ -10,6 +10,7 @@ import Equalizer from './modules/effects/Equalizer';
 import Reverb from './modules/effects/Reverb';
 import Delay from './modules/effects/Delay';
 import Compressor from './modules/effects/Compressor';
+import Analyzer from './modules/effects/Analyzer';
 
 class SynthControl extends Component {
   render() {
@@ -24,6 +25,7 @@ class SynthControl extends Component {
         <Reverb />
         <Delay />
         <Compressor />
+        <Analyzer />
       </div>
     );
   }

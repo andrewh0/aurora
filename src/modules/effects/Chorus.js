@@ -119,6 +119,6 @@ class UnconnectedChorus extends Component {
   }
 }
 
-const Phaser = connect(mapStateToProps, mapDispatchToProps)(UnconnectedChorus);
+const Chorus = connect(mapStateToProps, mapDispatchToProps)(UnconnectedChorus);
 
-export default Phaser;
+export default Chorus;
