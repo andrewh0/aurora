@@ -15,6 +15,7 @@ const mapStateToProps = ({
   delay: {toneRef: delay},
   compressor: {toneRef: compressor},
   panVol: {toneRef: panVol},
+  meter: {left: {toneRef: meterL}, right: {toneRef: meterR}},
   analyzer: {toneRef: analyzer}
 }) => ({
   synth,
@@ -27,6 +28,8 @@ const mapStateToProps = ({
   delay,
   compressor,
   panVol,
+  meterL,
+  meterR,
   analyzer
 });
 
@@ -45,8 +48,13 @@ class UnconnectedSynthRouter extends Component {
       delay,
       compressor,
       panVol,
+      meterL,
+      meterR,
       analyzer
     } = this.props;
+    const split = new Tone.Split();
+    split.left.connect(meterL);
+    split.right.connect(meterR);
     synth.chain(
       filter,
       distortion,
@@ -56,10 +64,9 @@ class UnconnectedSynthRouter extends Component {
       reverb,
       delay,
       compressor,
-      panVol,
-      analyzer,
-      Tone.Master
+      panVol
     );
+    panVol.fan(split, analyzer, Tone.Master);
   }
   render() {
     return (

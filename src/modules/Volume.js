@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Slider from '../ui/Slider';
 import {updatePanVol} from '../store/panVol';
+import Meter from './Meter';
 
 const mapStateToProps = ({
   panVol: {pan, volume}
@@ -46,6 +47,7 @@ class UnconnectedPanVol extends Component {
           onChange={this.handlePanChange}
           label="Pan"
         />
+        <Meter />
       </div>
     );
   }

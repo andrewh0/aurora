@@ -14,8 +14,8 @@ const StyledCanvas = styled.canvas`
 `;
 
 class UnconnectedAnalyzer extends Component {
-  frameId: null;
-  canvas: HTMLCanvasElement | null;
+  frameId: number;
+  canvas: HTMLCanvasElement;
   componentDidMount() {
     this.startLoop();
   }
@@ -37,9 +37,6 @@ class UnconnectedAnalyzer extends Component {
     this.frameId = window.requestAnimationFrame(this.analyzeWaveform);
   };
   drawWaveform(values: Uint8Array): void {
-    if (!this.canvas) {
-      return;
-    }
     const canvasHeight = 100;
     const canvasWidth = 2000;
     const waveContext = this.canvas.getContext('2d');
