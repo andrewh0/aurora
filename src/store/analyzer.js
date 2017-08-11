@@ -7,11 +7,11 @@ import type {StandardAction} from './util';
 
 const UPDATE_ANALYZER = 'UPDATE_ANALYZER';
 
-const defaultAnalyer = new Tone.Analyser('waveform', '1024');
+const defaultAnalyzer = new Tone.Analyser('waveform', '1024');
 
 const analyzerInitialState = {
-  toneRef: defaultAnalyer,
-  ...defaultAnalyer.get()
+  toneRef: defaultAnalyzer,
+  ...defaultAnalyzer.get()
 };
 
 const updateAnalyzer = createToneUpdater(
