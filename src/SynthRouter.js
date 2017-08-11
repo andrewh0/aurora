@@ -14,6 +14,7 @@ const mapStateToProps = ({
   reverb: {toneRef: reverb},
   delay: {toneRef: delay},
   compressor: {toneRef: compressor},
+  panVol: {toneRef: panVol},
   analyzer: {toneRef: analyzer}
 }) => ({
   synth,
@@ -25,6 +26,7 @@ const mapStateToProps = ({
   reverb,
   delay,
   compressor,
+  panVol,
   analyzer
 });
 
@@ -42,6 +44,7 @@ class UnconnectedSynthRouter extends Component {
       reverb,
       delay,
       compressor,
+      panVol,
       analyzer
     } = this.props;
     synth.chain(
@@ -53,6 +56,7 @@ class UnconnectedSynthRouter extends Component {
       reverb,
       delay,
       compressor,
+      panVol,
       analyzer,
       Tone.Master
     );
