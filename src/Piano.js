@@ -8,6 +8,12 @@ import keyboardMap from './util/keyboardMap';
 import {getNoteNameFromMidi, getVelocityFromMidi} from './util/notes';
 import Octave from './Octave';
 
+const PianoContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  overflow: scroll;
+`;
 const PianoWrapper = styled.div`display: flex;`;
 
 const mapStateToProps = ({oscillator: {toneRef: synth}, filter}) => ({
@@ -189,21 +195,23 @@ class UnconnectedPiano extends Component {
     const {octaves} = this.props;
     const {octaveOffset, mouseDown, playing} = this.state;
     return (
-      <PianoWrapper
-        onMouseDown={this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
-        onMouseLeave={this.handleMouseLeave}>
-        {_.times(octaves, i =>
-          <Octave
-            key={i}
-            octave={i + octaveOffset}
-            onPlay={this.handlePlay}
-            onStop={this.handleStop}
-            mouseDown={mouseDown}
-            playing={playing}
-          />
-        )}
-      </PianoWrapper>
+      <PianoContainer>
+        <PianoWrapper
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+          onMouseLeave={this.handleMouseLeave}>
+          {_.times(octaves, i =>
+            <Octave
+              key={i}
+              octave={i + octaveOffset}
+              onPlay={this.handlePlay}
+              onStop={this.handleStop}
+              mouseDown={mouseDown}
+              playing={playing}
+            />
+          )}
+        </PianoWrapper>
+      </PianoContainer>
     );
   }
 }
