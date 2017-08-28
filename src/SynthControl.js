@@ -1,6 +1,8 @@
 // @flow
 
 import React from 'react';
+import styled from 'styled-components';
+import {PIANO_KEY_HEIGHT} from './util/styleConstants';
 import Source from './modules/Source';
 import Filter from './modules/Filter';
 import Distortion from './modules/effects/Distortion';
@@ -13,8 +15,10 @@ import Compressor from './modules/effects/Compressor';
 import Volume from './modules/Volume';
 import Analyzer from './modules/effects/Analyzer';
 
+const StyledSynthControl = styled.div`margin-bottom: ${PIANO_KEY_HEIGHT};`;
+
 const SynthControl = () =>
-  <div>
+  <StyledSynthControl>
     <Source />
     <Filter />
     <Distortion />
@@ -26,6 +30,6 @@ const SynthControl = () =>
     <Compressor />
     <Volume />
     <Analyzer />
-  </div>;
+  </StyledSynthControl>;
 
 export default SynthControl;

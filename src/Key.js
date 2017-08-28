@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import {PIANO_KEY_HEIGHT} from './util/styleConstants';
 
 const KeyWrapper = styled.div`
   cursor: pointer;
@@ -12,7 +13,7 @@ const KeyWrapper = styled.div`
 `;
 
 const WhiteKey = styled(KeyWrapper)`
-  height: 200px;
+  height: ${PIANO_KEY_HEIGHT};
   background-color: ${props => (props.isPlaying ? '#B8E0FF' : '#F2F4FF')};
 `;
 
