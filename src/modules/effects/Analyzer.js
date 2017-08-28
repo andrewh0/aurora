@@ -40,7 +40,7 @@ class UnconnectedAnalyzer extends Component {
     const canvasHeight = 100;
     const canvasWidth = 2000;
     const waveContext = this.canvas.getContext('2d');
-    waveContext.clearRect(0, 0, canvasWidth, canvasHeight);
+    waveContext.clearRect(0, 0, canvasWidth, canvasHeight + 10);
     waveContext.beginPath();
     waveContext.lineJoin = 'round';
     waveContext.lineWidth = 1;
