@@ -1,7 +1,7 @@
 // @flow
 
-import React, {Component} from 'react';
-import Oscillator from './modules/Oscillator';
+import React from 'react';
+import Source from './modules/Source';
 import Filter from './modules/Filter';
 import Distortion from './modules/effects/Distortion';
 import Phaser from './modules/effects/Phaser';
@@ -13,24 +13,19 @@ import Compressor from './modules/effects/Compressor';
 import Volume from './modules/Volume';
 import Analyzer from './modules/effects/Analyzer';
 
-class SynthControl extends Component {
-  render() {
-    return (
-      <div>
-        <Oscillator />
-        <Filter />
-        <Distortion />
-        <Phaser />
-        <Chorus />
-        <Equalizer />
-        <Reverb />
-        <Delay />
-        <Compressor />
-        <Volume />
-        <Analyzer />
-      </div>
-    );
-  }
-}
+const SynthControl = () =>
+  <div>
+    <Source />
+    <Filter />
+    <Distortion />
+    <Phaser />
+    <Chorus />
+    <Equalizer />
+    <Reverb />
+    <Delay />
+    <Compressor />
+    <Volume />
+    <Analyzer />
+  </div>;
 
 export default SynthControl;

@@ -7,7 +7,7 @@ import type {StandardAction} from './util';
 
 const UPDATE_FILTER = 'UPDATE_FILTER';
 
-const defaultFilter = new Tone.Filter(1000, 'lowpass', -12);
+const defaultFilter = new Tone.Filter(22000, 'lowpass', -12);
 
 const filterInitialState = {
   toneRef: defaultFilter,

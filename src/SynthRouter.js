@@ -5,7 +5,7 @@ import Tone from 'tone';
 import {connect} from 'react-redux';
 
 const mapStateToProps = ({
-  oscillator: {toneRef: synth},
+  source: {toneRef: synth},
   filter: {toneRef: filter},
   distortion: {toneRef: distortion},
   phaser: {toneRef: phaser},

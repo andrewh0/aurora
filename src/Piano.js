@@ -16,7 +16,7 @@ const PianoContainer = styled.div`
 `;
 const PianoWrapper = styled.div`display: flex;`;
 
-const mapStateToProps = ({oscillator: {toneRef: synth}, filter}) => ({
+const mapStateToProps = ({source: {toneRef: synth}, filter}) => ({
   synth
 });
 
