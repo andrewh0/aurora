@@ -1,7 +1,6 @@
 // @flow
 
-import {assocIn} from 'icepick';
-import {get} from 'lodash';
+import {get, cloneDeep, set} from 'lodash';
 import {toStringPath} from '../util/path';
 
 export type ActionType = string;
@@ -40,8 +39,9 @@ function createToneUpdater(
 }
 
 function moduleUpdateReducer(state: Object, action: StandardAction): Object {
+  const nextState = cloneDeep(state);
   if (action.payload) {
-    return assocIn(state, action.payload.path, action.payload.value);
+    return set(nextState, action.payload.path, action.payload.value);
   }
   return state;
 }

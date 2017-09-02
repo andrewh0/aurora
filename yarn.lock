@@ -3225,10 +3225,6 @@ hyphenate-style-name@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
 
-icepick@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/icepick/-/icepick-2.1.1.tgz#723759fea3dc0a19f081f19568168ea80f3c6ed1"
-
 iconv-lite@0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
