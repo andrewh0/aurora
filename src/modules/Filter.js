@@ -42,7 +42,7 @@ class UnconnectedFilter extends Component {
   render() {
     const {type, frequency, Q, gain, rolloff} = this.props;
     return (
-      <div className="filter-controls">
+      <div>
         <h1>Filter Controls</h1>
         <DropDown
           label="Filter Type"

@@ -44,7 +44,7 @@ class UnconnectedSource extends Component {
   render() {
     const {envelope, portamento} = this.props;
     return (
-      <div className="source-controls">
+      <div>
         <h1>Source Controls</h1>
         <Slider
           value={envelope.attack}

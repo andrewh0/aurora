@@ -57,7 +57,7 @@ class UnconnectedOscillator extends Component {
     const {oscillator, detune, pan} = this.props;
     const enableSpreadControls = isFat(oscillator.type);
     return (
-      <div className="oscillator-controls">
+      <div>
         <h1>Oscillator Controls</h1>
         <Slider
           value={oscillator.volume}
