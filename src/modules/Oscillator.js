@@ -4,10 +4,10 @@ import React, {Component} from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import Slider from '../ui/Slider';
-import DropDown from '../ui/DropDown';
 import {isFat} from '../util/synth';
 import {toArrayPath} from '../util/path';
 import {updateSource} from '../store/source';
+import WaveformSelector from '../ui/WaveformSelector';
 
 const mapStateToProps = ({source}, {number}) => {
   const oscillatorProp = `oscillator${number}`;
@@ -67,21 +67,9 @@ class UnconnectedOscillator extends Component {
           step={1}
           label="Volume"
         />
-        <DropDown
-          label="Waveform"
-          name="waveforms"
-          value={oscillator.type}
-          values={[
-            {value: 'sawtooth', label: 'Sawtooth'},
-            {value: 'sine', label: 'Sine'},
-            {value: 'square', label: 'Square'},
-            {value: 'triangle', label: 'Triangle'},
-            {value: 'fatsawtooth', label: 'Fat Sawtooth'},
-            {value: 'fatsine', label: 'Fat Sine'},
-            {value: 'fatsquare', label: 'Fat Square'},
-            {value: 'fattriangle', label: 'Fat Triangle'}
-          ]}
-          onChange={this.handleWaveformChange}
+        <WaveformSelector
+          currentWaveform={oscillator.type}
+          onWaveformChange={this.handleWaveformChange}
         />
         <Slider
           value={detune}
