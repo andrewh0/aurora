@@ -39,6 +39,7 @@ const StyledInput = styled.input`
   width: 200px;
   background: transparent;
   margin-bottom: 4px;
+  margin-right: 4px;
 
   &:focus {
     outline: none;
@@ -99,17 +100,14 @@ const StyledInput = styled.input`
   }
 `;
 
-const SliderWrapper = styled.div`
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  margin-bottom: 8px;
-`;
+const SliderWrapper = styled.div`margin-bottom: 8px;`;
 
 const SliderLabel = styled.p`
   margin-top: 0;
   margin-bottom: 4px;
 `;
+
+const SliderInputWrapper = styled.div`display: flex;`;
 
 class Slider extends Component {
   state = {
@@ -126,15 +124,17 @@ class Slider extends Component {
         <SliderLabel>
           {label}
         </SliderLabel>
-        <StyledInput
-          onChange={this.handleChange}
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-        />
-        {this.state.value}
+        <SliderInputWrapper>
+          <StyledInput
+            onChange={this.handleChange}
+            type="range"
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+          />
+          {this.state.value}
+        </SliderInputWrapper>
       </SliderWrapper>
     );
   }

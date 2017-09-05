@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Slider from '../../ui/Slider';
 import {updateCompressor} from '../../store/compressor';
+import {ModuleTitle, ModuleCard} from '../moduleStyles';
 
 const mapStateToProps = ({
   compressor: {attack, knee, ratio, release, threshold}
@@ -39,8 +40,8 @@ class UnconnectedCompressor extends Component {
   render() {
     const {attack, knee, ratio, release, threshold} = this.props;
     return (
-      <div>
-        <h1>Compressor</h1>
+      <ModuleCard>
+        <ModuleTitle>Compressor</ModuleTitle>
         <Slider
           onChange={this.handleCompressorAttackChange}
           value={attack}
@@ -81,7 +82,7 @@ class UnconnectedCompressor extends Component {
           step={1}
           label="Threshold (dB)"
         />
-      </div>
+      </ModuleCard>
     );
   }
 }

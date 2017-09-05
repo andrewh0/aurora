@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Slider from '../../ui/Slider';
 import PercentSlider from '../../ui/PercentSlider';
 import {updateDelay} from '../../store/delay';
+import {ModuleTitle, ModuleCard} from '../moduleStyles';
 
 const mapStateToProps = ({
   delay: {delayTime, feedback, wet}
@@ -32,8 +33,8 @@ class UnconnectedDelay extends Component {
   render() {
     const {delayTime, feedback, wet} = this.props;
     return (
-      <div>
-        <h1>Delay</h1>
+      <ModuleCard>
+        <ModuleTitle>Delay</ModuleTitle>
         <Slider
           onChange={this.handleDelayTimeChange}
           value={delayTime}
@@ -53,7 +54,7 @@ class UnconnectedDelay extends Component {
           onChange={this.handleDelayWetChange}
           label="Dry/Wet"
         />
-      </div>
+      </ModuleCard>
     );
   }
 }

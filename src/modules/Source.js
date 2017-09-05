@@ -1,11 +1,18 @@
 // @flow
 
 import React, {Component} from 'react';
+import styled from 'styled-components';
 import {connect} from 'react-redux';
 import Slider from '../ui/Slider';
 import Oscillator from './Oscillator';
 import {toArrayPath} from '../util/path';
 import {updateSource} from '../store/source';
+import {ModuleTitle, ModuleCard} from './moduleStyles';
+
+const OscillatorWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 const mapStateToProps = ({source: {amplitudeEnv, portamento}}) => {
   return {
@@ -45,50 +52,54 @@ class UnconnectedSource extends Component {
     const {envelope, portamento} = this.props;
     return (
       <div>
-        <h1>Source Controls</h1>
-        <Slider
-          value={envelope.attack}
-          onChange={this.handleAttackChange}
-          min={0.005}
-          max={1}
-          step={0.001}
-          label="Attack"
-        />
-        <Slider
-          value={envelope.decay}
-          onChange={this.handleDecayChange}
-          min={0.005}
-          max={1}
-          step={0.001}
-          label="Decay"
-        />
-        <Slider
-          value={envelope.sustain}
-          onChange={this.handleSustainChange}
-          min={0}
-          max={1}
-          step={0.001}
-          label="Sustain"
-        />
-        <Slider
-          value={envelope.release}
-          onChange={this.handleReleaseChange}
-          min={0.2}
-          max={2}
-          step={0.001}
-          label="Release"
-        />
-        <Slider
-          value={portamento}
-          onChange={this.handlePortamentoChange}
-          min={0}
-          max={5}
-          step={0.01}
-          label="Portamento"
-        />
-        <Oscillator number={0} />
-        <Oscillator number={1} />
-        <Oscillator number={2} />
+        <OscillatorWrapper>
+          <Oscillator number={0} />
+          <Oscillator number={1} />
+          <Oscillator number={2} />
+        </OscillatorWrapper>
+        <ModuleCard>
+          <ModuleTitle>Source Controls</ModuleTitle>
+          <Slider
+            value={envelope.attack}
+            onChange={this.handleAttackChange}
+            min={0.005}
+            max={1}
+            step={0.001}
+            label="Attack"
+          />
+          <Slider
+            value={envelope.decay}
+            onChange={this.handleDecayChange}
+            min={0.005}
+            max={1}
+            step={0.001}
+            label="Decay"
+          />
+          <Slider
+            value={envelope.sustain}
+            onChange={this.handleSustainChange}
+            min={0}
+            max={1}
+            step={0.001}
+            label="Sustain"
+          />
+          <Slider
+            value={envelope.release}
+            onChange={this.handleReleaseChange}
+            min={0.2}
+            max={2}
+            step={0.001}
+            label="Release"
+          />
+          <Slider
+            value={portamento}
+            onChange={this.handlePortamentoChange}
+            min={0}
+            max={5}
+            step={0.01}
+            label="Portamento"
+          />
+        </ModuleCard>
       </div>
     );
   }

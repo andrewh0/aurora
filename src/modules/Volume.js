@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Slider from '../ui/Slider';
 import {updatePanVol} from '../store/panVol';
 import Meter from './Meter';
+import {ModuleTitle, ModuleCard} from './moduleStyles';
 
 const mapStateToProps = ({
   panVol: {pan, volume}
@@ -29,8 +30,8 @@ class UnconnectedPanVol extends Component {
   render() {
     const {pan, volume} = this.props;
     return (
-      <div>
-        <h1>Panning and Volume</h1>
+      <ModuleCard>
+        <ModuleTitle>Panning and Volume</ModuleTitle>
         <Slider
           onChange={this.handleVolumeChange}
           value={volume}
@@ -48,7 +49,7 @@ class UnconnectedPanVol extends Component {
           label="Pan"
         />
         <Meter />
-      </div>
+      </ModuleCard>
     );
   }
 }

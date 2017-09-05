@@ -11,11 +11,14 @@ import Reverb from './Reverb';
 import Delay from './Delay';
 import Compressor from './Compressor';
 
-const EffectsWrapper = styled.div`width: 100%;`;
+const EffectsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 class Effects extends Component {
   state = {
-    open: false
+    open: true
   };
   handleToggleOpen = (e: SyntheticMouseEvent): void => {
     e.preventDefault();

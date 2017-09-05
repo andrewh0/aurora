@@ -6,6 +6,7 @@ import DropDown from '../../ui/DropDown';
 import Slider from '../../ui/Slider';
 import PercentSlider from '../../ui/PercentSlider';
 import {updateDistortion} from '../../store/distortion';
+import {ModuleTitle, ModuleCard} from '../moduleStyles';
 
 type DistortionOversample = 'none' | '2x' | '4x';
 
@@ -35,8 +36,8 @@ class UnconnectedDistortion extends Component {
   render() {
     const {distortion, oversample, wet} = this.props;
     return (
-      <div>
-        <h1>Distortion</h1>
+      <ModuleCard>
+        <ModuleTitle>Distortion</ModuleTitle>
         <Slider
           onChange={this.handleDistortionAmountChange}
           value={distortion}
@@ -61,7 +62,7 @@ class UnconnectedDistortion extends Component {
           onChange={this.handleDistortionWetChange}
           label="Dry/Wet"
         />
-      </div>
+      </ModuleCard>
     );
   }
 }

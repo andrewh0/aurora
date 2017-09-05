@@ -7,6 +7,7 @@ import DropDown from '../ui/DropDown';
 import Slider from '../ui/Slider';
 import {updateFilter} from '../store/filter';
 import {toArrayPath} from '../util/path';
+import {ModuleTitle, ModuleCard} from './moduleStyles';
 
 const mapStateToProps = ({
   filter: {frequency, gain, Q, rolloff, type}
@@ -42,8 +43,8 @@ class UnconnectedFilter extends Component {
   render() {
     const {type, frequency, Q, gain, rolloff} = this.props;
     return (
-      <div>
-        <h1>Filter Controls</h1>
+      <ModuleCard>
+        <ModuleTitle>Filter Controls</ModuleTitle>
         <DropDown
           label="Filter Type"
           name="filter-type"
@@ -74,7 +75,7 @@ class UnconnectedFilter extends Component {
           min={0.1}
           max={18}
           step={0.1}
-          label="Q"
+          label="Resonance"
         />
         {includes(['lowshelf', 'highshelf', 'peaking'], type) &&
           <Slider
@@ -92,7 +93,7 @@ class UnconnectedFilter extends Component {
           values={[{value: -12}, {value: -24}, {value: -48}, {value: -96}]}
           onChange={this.handleFilterRolloffChange}
         />
-      </div>
+      </ModuleCard>
     );
   }
 }

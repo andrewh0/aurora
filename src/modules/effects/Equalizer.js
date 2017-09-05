@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Slider from '../../ui/Slider';
 import {updateEqualizer} from '../../store/equalizer';
+import {ModuleTitle, ModuleCard} from '../moduleStyles';
 
 const mapStateToProps = ({
   equalizer: {high, highFrequency, low, lowFrequency, mid}
@@ -39,8 +40,8 @@ class UnconnectedEqualizer extends Component {
   render() {
     const {high, highFrequency, low, lowFrequency, mid} = this.props;
     return (
-      <div>
-        <h1>Equalizer</h1>
+      <ModuleCard>
+        <ModuleTitle>Equalizer</ModuleTitle>
         <Slider
           onChange={this.handleEQHighChange}
           value={high}
@@ -81,7 +82,7 @@ class UnconnectedEqualizer extends Component {
           step={1}
           label="Low Frequency (Hz)"
         />
-      </div>
+      </ModuleCard>
     );
   }
 }

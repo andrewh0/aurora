@@ -8,6 +8,7 @@ import {isFat} from '../util/synth';
 import {toArrayPath} from '../util/path';
 import {updateSource} from '../store/source';
 import WaveformSelector from '../ui/WaveformSelector';
+import {ModuleTitle, ModuleCard} from './moduleStyles';
 
 const mapStateToProps = ({source}, {number}) => {
   const oscillatorProp = `oscillator${number}`;
@@ -54,19 +55,13 @@ class UnconnectedOscillator extends Component {
     this.updateSynth(`${this.props.oscillatorProp}.count`, value);
   };
   render() {
-    const {oscillator, detune, pan} = this.props;
+    const {oscillator, detune, pan, number} = this.props;
     const enableSpreadControls = isFat(oscillator.type);
     return (
-      <div>
-        <h1>Oscillator Controls</h1>
-        <Slider
-          value={oscillator.volume}
-          onChange={this.handleVolumeChange}
-          min={-36}
-          max={12}
-          step={1}
-          label="Volume"
-        />
+      <ModuleCard>
+        <ModuleTitle>
+          Oscillator {number + 1}
+        </ModuleTitle>
         <WaveformSelector
           currentWaveform={oscillator.type}
           onWaveformChange={this.handleWaveformChange}
@@ -77,7 +72,7 @@ class UnconnectedOscillator extends Component {
           min={-2400}
           max={2400}
           step={100}
-          label="Detune (Cents)"
+          label="Detune (cents)"
         />
         <Slider
           value={pan.pan || 0}
@@ -107,7 +102,15 @@ class UnconnectedOscillator extends Component {
             label="Voices"
           />
         ]}
-      </div>
+        <Slider
+          value={oscillator.volume}
+          onChange={this.handleVolumeChange}
+          min={-36}
+          max={12}
+          step={1}
+          label="Volume"
+        />
+      </ModuleCard>
     );
   }
 }

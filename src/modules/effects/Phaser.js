@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Slider from '../../ui/Slider';
 import PercentSlider from '../../ui/PercentSlider';
 import {updatePhaser} from '../../store/phaser';
+import {ModuleTitle, ModuleCard} from '../moduleStyles';
 
 const mapStateToProps = ({
   phaser: {Q, baseFrequency, frequency, octaves, wet}
@@ -46,15 +47,15 @@ class UnconnectedPhaser extends Component {
   render() {
     const {Q, baseFrequency, frequency, octaves, wet} = this.props;
     return (
-      <div>
-        <h1>Phaser</h1>
+      <ModuleCard>
+        <ModuleTitle>Phaser</ModuleTitle>
         <Slider
           onChange={this.handlePhaserQChange}
           value={Q}
           min={0.1}
           max={18}
           step={0.1}
-          label="Q"
+          label="Resonance"
         />
         <Slider
           onChange={this.handlePhaserBaseFrequencyChange}
@@ -85,7 +86,7 @@ class UnconnectedPhaser extends Component {
           onChange={this.handlePhaserWetChange}
           label="Dry/Wet"
         />
-      </div>
+      </ModuleCard>
     );
   }
 }

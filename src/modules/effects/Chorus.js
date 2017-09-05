@@ -6,6 +6,7 @@ import Slider from '../../ui/Slider';
 import DropDown from '../../ui/DropDown';
 import PercentSlider from '../../ui/PercentSlider';
 import {updateChorus} from '../../store/chorus';
+import {ModuleTitle, ModuleCard} from '../moduleStyles';
 
 type BasicOscillator = 'sine' | 'square' | 'sawtooth' | 'triangle';
 
@@ -60,8 +61,8 @@ class UnconnectedChorus extends Component {
       wet
     } = this.props;
     return (
-      <div>
-        <h1>Chorus</h1>
+      <ModuleCard>
+        <ModuleTitle>Chorus</ModuleTitle>
         <Slider
           onChange={this.handleChorusDelayTimeChange}
           value={delayTime}
@@ -114,7 +115,7 @@ class UnconnectedChorus extends Component {
           onChange={this.handleChorusWetChange}
           label="Dry/Wet"
         />
-      </div>
+      </ModuleCard>
     );
   }
 }

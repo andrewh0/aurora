@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Slider from '../../ui/Slider';
 import PercentSlider from '../../ui/PercentSlider';
 import {updateReverb} from '../../store/reverb';
+import {ModuleTitle, ModuleCard} from '../moduleStyles';
 
 const mapStateToProps = ({
   reverb: {dampening, roomSize, wet}
@@ -32,8 +33,8 @@ class UnconnectedReverb extends Component {
   render() {
     const {dampening, roomSize, wet} = this.props;
     return (
-      <div>
-        <h1>Reverb</h1>
+      <ModuleCard>
+        <ModuleTitle>Reverb</ModuleTitle>
         <Slider
           onChange={this.handleReverbDampeningChange}
           value={dampening}
@@ -52,7 +53,7 @@ class UnconnectedReverb extends Component {
           onChange={this.handleReverbWetChange}
           label="Dry/Wet"
         />
-      </div>
+      </ModuleCard>
     );
   }
 }
