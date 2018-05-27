@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import {round} from '../util/round';
 
 const thumbBorderWidth = 1;
 const thumbHeight = 20;
@@ -133,7 +134,7 @@ class Slider extends Component {
             step={step}
             value={value}
           />
-          {this.state.value}
+          {round(this.state.value, 2)}
         </SliderInputWrapper>
       </SliderWrapper>
     );
