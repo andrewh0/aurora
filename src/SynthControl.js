@@ -9,7 +9,10 @@ import Volume from './modules/Volume';
 import Analyzer from './modules/effects/Analyzer';
 import Effects from './modules/effects/Effects';
 
-const StyledSynthControl = styled.div`margin-bottom: ${PIANO_KEY_HEIGHT};`;
+const StyledSynthControl = styled.div`
+  padding: 16px;
+  margin-bottom: ${PIANO_KEY_HEIGHT};
+`;
 
 const SynthControl = () =>
   <StyledSynthControl>

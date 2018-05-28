@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {PIANO_KEY_HEIGHT} from './util/styleConstants';
+import {BRAND_COLOR} from './util/colors';
 
 const KeyWrapper = styled.div`
   cursor: pointer;
@@ -14,7 +15,7 @@ const KeyWrapper = styled.div`
 
 const WhiteKey = styled(KeyWrapper)`
   height: ${PIANO_KEY_HEIGHT};
-  background-color: ${props => (props.isPlaying ? '#B8E0FF' : '#F2F4FF')};
+  background-color: ${props => (props.isPlaying ? BRAND_COLOR : '#F2F4FF')};
 `;
 
 const BlackKey = styled(KeyWrapper)`
@@ -26,7 +27,7 @@ const BlackKey = styled(KeyWrapper)`
   border-width: 2px;
   border-top-width: 1px;
   border-color: ${props => (props.isPlaying ? '#5D627A' : '#0E0F14')};
-  background-color: ${props => (props.isPlaying ? '#B8E0FF' : '#0E0F14')};
+  background-color: ${props => (props.isPlaying ? BRAND_COLOR : '#0E0F14')};
 `;
 
 class Key extends Component {

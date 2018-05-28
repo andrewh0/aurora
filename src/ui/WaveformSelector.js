@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import {BRAND_COLOR, TEXT_DARK} from '../util/colors';
 
 const StyledSvg = styled.svg`
   margin: 4px;
@@ -12,8 +13,8 @@ const StyledSvg = styled.svg`
 
 const SvgWrapper = styled.div`display: inline-block;`;
 
-const unselectedStrokeColor = '#000000';
-const selectedStrokeColor = '#e2cb00';
+const unselectedStrokeColor = TEXT_DARK;
+const selectedStrokeColor = BRAND_COLOR;
 const strokeWidth = 2;
 
 const Sine = ({isSelected}) =>
