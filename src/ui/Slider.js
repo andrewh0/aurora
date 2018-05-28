@@ -15,7 +15,6 @@ const trackBorder = `1px solid #010101`;
 const sliderBoxShadow = `1px 1px 1px black, 0px 0px 1px #0d0d0d`;
 
 const thumbStyles = `
-  // box-shadow: ${sliderBoxShadow};
   border: ${thumbBorderWidth}px solid black;
   height: ${thumbHeight}px;
   width: ${thumbWidth}px;
@@ -25,7 +24,6 @@ const thumbStyles = `
 `;
 
 const trackStyles = `
-// box-shadow: ${sliderBoxShadow};
   width: 100%;
   height: ${trackHeight}px;
   cursor: pointer;
