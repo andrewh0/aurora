@@ -21,7 +21,15 @@ const Small = styled.p`
 const Header = () => (
   <HeaderInner>
     <Title>aurora</Title>
-    <Small>sound synthesis in your browser</Small>
+    <Small>
+      sound synthesis in your browser (<a
+        href="https://github.com/andrewh0/aurora"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view source
+      </a>)
+    </Small>
   </HeaderInner>
 );
 
