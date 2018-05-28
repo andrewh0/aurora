@@ -3,12 +3,13 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {round} from '../util/round';
+import {BRAND_COLOR_LIGHT} from '../util/colors';
 
 const thumbBorderWidth = 1;
 const thumbHeight = 20;
 const thumbWidth = thumbHeight;
 const trackBackgroundColor = '#777';
-const trackBackgroundColorFocus = `#B8E0FF`;
+const trackBackgroundColorFocus = BRAND_COLOR_LIGHT;
 const trackHeight = 8;
 const trackBorderRadius = 4;
 const trackBorder = `1px solid #010101`;
