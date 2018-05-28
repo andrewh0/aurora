@@ -1,6 +1,13 @@
 // @flow
 
 import React, {Component} from 'react';
+import styled from 'styled-components';
+
+const Select = styled.select`
+  display: block;
+  border: 1px solid #010101;
+  margin-bottom: 8px;
+`;
 
 class DropDown extends Component {
   handleChange = (e: Event & {target: HTMLInputElement}) => {
@@ -12,13 +19,13 @@ class DropDown extends Component {
     return (
       <div>
         {label}
-        <select name={name} onChange={this.handleChange} value={value}>
+        <Select name={name} onChange={this.handleChange} value={value}>
           {values.map(({value: v, label: valueLabel}, i) =>
             <option key={i} value={v}>
               {valueLabel || v}
             </option>
           )}
-        </select>
+        </Select>
       </div>
     );
   }
