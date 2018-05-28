@@ -15,7 +15,10 @@ const mapStateToProps = ({
   delay: {toneRef: delay},
   compressor: {toneRef: compressor},
   panVol: {toneRef: panVol},
-  meter: {left: {toneRef: meterL}, right: {toneRef: meterR}},
+  meter: {
+    left: {toneRef: meterL},
+    right: {toneRef: meterR}
+  },
   analyzer: {toneRef: analyzer}
 }) => ({
   synth,
@@ -69,16 +72,13 @@ class UnconnectedSynthRouter extends Component {
     panVol.fan(split, analyzer, Tone.Master);
   }
   render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
+    return <div>{this.props.children}</div>;
   }
 }
 
-const SynthRouter = connect(mapStateToProps, mapDispatchToProps)(
-  UnconnectedSynthRouter
-);
+const SynthRouter = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedSynthRouter);
 
 export default SynthRouter;

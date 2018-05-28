@@ -105,6 +105,9 @@ class UnconnectedSource extends Component {
   }
 }
 
-const Source = connect(mapStateToProps, mapDispatchToProps)(UnconnectedSource);
+const Source = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedSource);
 
 export default Source;

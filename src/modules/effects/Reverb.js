@@ -58,6 +58,9 @@ class UnconnectedReverb extends Component {
   }
 }
 
-const Reverb = connect(mapStateToProps, mapDispatchToProps)(UnconnectedReverb);
+const Reverb = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedReverb);
 
 export default Reverb;

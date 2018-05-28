@@ -48,7 +48,7 @@ class UnconnectedAnalyzer extends Component {
     waveContext.beginPath();
     waveContext.lineJoin = 'round';
     waveContext.lineWidth = 1;
-    waveContext.moveTo(0, values[0] / 255 * canvasHeight);
+    waveContext.moveTo(0, (values[0] / 255) * canvasHeight);
     for (let i of values.keys()) {
       const val = values[i] / 255;
       const x = canvasWidth * (i / values.length);
@@ -70,8 +70,9 @@ class UnconnectedAnalyzer extends Component {
   }
 }
 
-const Analyzer = connect(mapStateToProps, mapDispatchToProps)(
-  UnconnectedAnalyzer
-);
+const Analyzer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedAnalyzer);
 
 export default Analyzer;

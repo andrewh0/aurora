@@ -87,8 +87,9 @@ class UnconnectedCompressor extends Component {
   }
 }
 
-const Compressor = connect(mapStateToProps, mapDispatchToProps)(
-  UnconnectedCompressor
-);
+const Compressor = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedCompressor);
 
 export default Compressor;

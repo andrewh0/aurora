@@ -91,6 +91,9 @@ class UnconnectedPhaser extends Component {
   }
 }
 
-const Phaser = connect(mapStateToProps, mapDispatchToProps)(UnconnectedPhaser);
+const Phaser = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedPhaser);
 
 export default Phaser;

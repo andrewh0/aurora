@@ -11,34 +11,40 @@ const StyledSvg = styled.svg`
   }
 `;
 
-const SvgWrapper = styled.div`display: inline-block;`;
+const SvgWrapper = styled.div`
+  display: inline-block;
+`;
 
 const unselectedStrokeColor = TEXT_DARK;
 const selectedStrokeColor = BRAND_COLOR;
 const strokeWidth = 2;
 
-const Sine = ({isSelected}) =>
+const Sine = ({isSelected}) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     width="50"
     height="50"
-    viewBox="0 0 50 50">
+    viewBox="0 0 50 50"
+  >
     <g
       fill="none"
       strokeWidth={strokeWidth}
       stroke={isSelected ? selectedStrokeColor : unselectedStrokeColor}
-      strokeMiterlimit="10">
+      strokeMiterlimit="10"
+    >
       <path d="M.586 25.02c3.052-7.326 6.104-14.65 12.207-14.65C25 10.37 25 39.668 37.205 39.668" />
       <path d="M12.793 10.37C25 10.37 25 39.666 37.205 39.666c6.104 0 9.157-7.324 12.21-14.648" />
     </g>
-  </StyledSvg>;
+  </StyledSvg>
+);
 
-const Square = ({isSelected}) =>
+const Square = ({isSelected}) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     width="50"
     height="50"
-    viewBox="-1 0 52 52">
+    viewBox="-1 0 52 52"
+  >
     <path
       fill="none"
       strokeWidth={strokeWidth}
@@ -46,14 +52,16 @@ const Square = ({isSelected}) =>
       strokeMiterlimit="10"
       d="M.5 24V10.5h24v29h25V24"
     />
-  </StyledSvg>;
+  </StyledSvg>
+);
 
-const Triangle = ({isSelected}) =>
+const Triangle = ({isSelected}) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     width="50"
     height="50"
-    viewBox="0 0 50 50">
+    viewBox="0 0 50 50"
+  >
     <path
       fill="none"
       strokeWidth={strokeWidth}
@@ -61,14 +69,16 @@ const Triangle = ({isSelected}) =>
       strokeMiterlimit="10"
       d="M.59 24.976l12.107-14.68 24.286 29.237L49.41 24.976"
     />
-  </StyledSvg>;
+  </StyledSvg>
+);
 
-const Sawtooth = ({isSelected}) =>
+const Sawtooth = ({isSelected}) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     width="50"
     height="50"
-    viewBox="0 0 50 50">
+    viewBox="0 0 50 50"
+  >
     <path
       fill="none"
       strokeWidth={strokeWidth}
@@ -76,7 +86,8 @@ const Sawtooth = ({isSelected}) =>
       strokeMiterlimit="10"
       d="M.575 24.35L24.5 9.97v29.115L49.285 24.35"
     />
-  </StyledSvg>;
+  </StyledSvg>
+);
 
 class WaveformSelector extends Component {
   handleWaveformSelect = (waveform: string) => (e: SyntheticMouseEvent) => {

@@ -14,13 +14,14 @@ const StyledSynthControl = styled.div`
   margin-bottom: ${PIANO_KEY_HEIGHT};
 `;
 
-const SynthControl = () =>
+const SynthControl = () => (
   <StyledSynthControl>
     <Source />
     <Filter />
     <Effects />
     <Volume />
     <Analyzer />
-  </StyledSynthControl>;
+  </StyledSynthControl>
+);
 
 export default SynthControl;

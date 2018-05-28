@@ -6,7 +6,9 @@ import styled from 'styled-components';
 import {NOTES} from './util/notes';
 import Key from './Key';
 
-const OctaveWrapper = styled.div`display: flex;`;
+const OctaveWrapper = styled.div`
+  display: flex;
+`;
 
 const Octave = ({
   onPlay,
@@ -20,9 +22,9 @@ const Octave = ({
   mouseDown: boolean,
   octave: number,
   playing: Array<string>
-}) =>
+}) => (
   <OctaveWrapper>
-    {NOTES.map(({noteName, color}, i) =>
+    {NOTES.map(({noteName, color}, i) => (
       <Key
         key={i}
         type={color}
@@ -32,7 +34,8 @@ const Octave = ({
         note={`${noteName}${octave}`}
         isPlaying={includes(playing, `${noteName}${octave}`)}
       />
-    )}
-  </OctaveWrapper>;
+    ))}
+  </OctaveWrapper>
+);
 
 export default Octave;

@@ -6,7 +6,7 @@ import {TEXT_DARK} from './util/colors';
 
 const HeaderInner = styled.div`
   padding: 16px;
-`
+`;
 
 const Title = styled.h1`
   font-size: 48px;
@@ -18,9 +18,11 @@ const Small = styled.p`
   margin: 0;
 `;
 
-const Header = () => <HeaderInner>
-  <Title>aurora</Title>
-  <Small>sound synthesis in your browser</Small>
-</HeaderInner>
+const Header = () => (
+  <HeaderInner>
+    <Title>aurora</Title>
+    <Small>sound synthesis in your browser</Small>
+  </HeaderInner>
+);
 
 export default Header;

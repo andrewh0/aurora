@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const ModuleTitle = styled.h2`margin: 0;`;
+const ModuleTitle = styled.h2`
+  margin: 0;
+`;
 
 const ModuleCard = styled.div`
   border: 2px solid #333;

@@ -28,17 +28,17 @@ class Effects extends Component {
     return (
       <div>
         <h1 onClick={this.handleToggleOpen}>Effects</h1>
-        {this.state.open
-          ? <EffectsWrapper>
-              <Distortion />
-              <Phaser />
-              <Chorus />
-              <Equalizer />
-              <Reverb />
-              <Delay />
-              <Compressor />
-            </EffectsWrapper>
-          : null}
+        {this.state.open ? (
+          <EffectsWrapper>
+            <Distortion />
+            <Phaser />
+            <Chorus />
+            <Equalizer />
+            <Reverb />
+            <Delay />
+            <Compressor />
+          </EffectsWrapper>
+        ) : null}
       </div>
     );
   }

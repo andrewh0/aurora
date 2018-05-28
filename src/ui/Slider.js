@@ -99,14 +99,18 @@ const StyledInput = styled.input`
   }
 `;
 
-const SliderWrapper = styled.div`margin-bottom: 8px;`;
+const SliderWrapper = styled.div`
+  margin-bottom: 8px;
+`;
 
 const SliderLabel = styled.p`
   margin-top: 0;
   margin-bottom: 4px;
 `;
 
-const SliderInputWrapper = styled.div`display: flex;`;
+const SliderInputWrapper = styled.div`
+  display: flex;
+`;
 
 class Slider extends Component {
   state = {
@@ -120,9 +124,7 @@ class Slider extends Component {
     const {min, max, step, label, value} = this.props;
     return (
       <SliderWrapper>
-        <SliderLabel>
-          {label}
-        </SliderLabel>
+        <SliderLabel>{label}</SliderLabel>
         <SliderInputWrapper>
           <StyledInput
             onChange={this.handleChange}

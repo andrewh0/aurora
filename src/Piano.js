@@ -14,7 +14,9 @@ const PianoContainer = styled.div`
   width: 100%;
   overflow: scroll;
 `;
-const PianoWrapper = styled.div`display: flex;`;
+const PianoWrapper = styled.div`
+  display: flex;
+`;
 
 const mapStateToProps = ({source: {toneRef: synth}, filter}) => ({
   synth
@@ -199,8 +201,9 @@ class UnconnectedPiano extends Component {
         <PianoWrapper
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
-          onMouseLeave={this.handleMouseLeave}>
-          {_.times(octaves, i =>
+          onMouseLeave={this.handleMouseLeave}
+        >
+          {_.times(octaves, i => (
             <Octave
               key={i}
               octave={i + octaveOffset}
@@ -209,7 +212,7 @@ class UnconnectedPiano extends Component {
               mouseDown={mouseDown}
               playing={playing}
             />
-          )}
+          ))}
         </PianoWrapper>
       </PianoContainer>
     );

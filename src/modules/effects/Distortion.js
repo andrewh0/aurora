@@ -67,8 +67,9 @@ class UnconnectedDistortion extends Component {
   }
 }
 
-const Distortion = connect(mapStateToProps, mapDispatchToProps)(
-  UnconnectedDistortion
-);
+const Distortion = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedDistortion);
 
 export default Distortion;

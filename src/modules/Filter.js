@@ -77,7 +77,7 @@ class UnconnectedFilter extends Component {
           step={0.1}
           label="Resonance"
         />
-        {includes(['lowshelf', 'highshelf', 'peaking'], type) &&
+        {includes(['lowshelf', 'highshelf', 'peaking'], type) && (
           <Slider
             value={gain}
             onChange={this.handleFilterGainChange}
@@ -85,7 +85,8 @@ class UnconnectedFilter extends Component {
             max={12}
             step={1}
             label="Gain"
-          />}
+          />
+        )}
         <DropDown
           label="Filter Rolloff"
           name="filter-rolloff"
@@ -98,6 +99,9 @@ class UnconnectedFilter extends Component {
   }
 }
 
-const Filter = connect(mapStateToProps, mapDispatchToProps)(UnconnectedFilter);
+const Filter = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedFilter);
 
 export default Filter;

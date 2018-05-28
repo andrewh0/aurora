@@ -5,7 +5,10 @@ import {connect} from 'react-redux';
 import styled from 'styled-components';
 
 const mapStateToProps = ({
-  meter: {left: {toneRef: meterL}, right: {toneRef: meterR}}
+  meter: {
+    left: {toneRef: meterL},
+    right: {toneRef: meterR}
+  }
 }) => ({meterL, meterR});
 
 const mapDispatchToProps = (dispatch: Function): Object => ({dispatch});
@@ -73,6 +76,9 @@ class UnconnectedMeter extends Component {
   }
 }
 
-const Meter = connect(mapStateToProps, mapDispatchToProps)(UnconnectedMeter);
+const Meter = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedMeter);
 
 export default Meter;

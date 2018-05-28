@@ -120,6 +120,9 @@ class UnconnectedChorus extends Component {
   }
 }
 
-const Chorus = connect(mapStateToProps, mapDispatchToProps)(UnconnectedChorus);
+const Chorus = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedChorus);
 
 export default Chorus;

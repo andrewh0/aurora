@@ -59,6 +59,9 @@ class UnconnectedDelay extends Component {
   }
 }
 
-const Delay = connect(mapStateToProps, mapDispatchToProps)(UnconnectedDelay);
+const Delay = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedDelay);
 
 export default Delay;

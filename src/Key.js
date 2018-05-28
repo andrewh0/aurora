@@ -67,25 +67,27 @@ class Key extends Component {
     this.props.onStop(note);
   };
   render() {
-    return this.props.type === 'white'
-      ? <WhiteKey
-          onTouchStart={this.handleTouchStart}
-          onTouchEnd={this.handleTouchEnd}
-          onMouseOver={this.handleMouseOver}
-          onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}
-          onMouseOut={this.handleMouseOut}
-          isPlaying={this.props.isPlaying}
-        />
-      : <BlackKey
-          onTouchStart={this.handleTouchStart}
-          onTouchEnd={this.handleTouchEnd}
-          onMouseOver={this.handleMouseOver}
-          onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}
-          onMouseOut={this.handleMouseOut}
-          isPlaying={this.props.isPlaying}
-        />;
+    return this.props.type === 'white' ? (
+      <WhiteKey
+        onTouchStart={this.handleTouchStart}
+        onTouchEnd={this.handleTouchEnd}
+        onMouseOver={this.handleMouseOver}
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
+        onMouseOut={this.handleMouseOut}
+        isPlaying={this.props.isPlaying}
+      />
+    ) : (
+      <BlackKey
+        onTouchStart={this.handleTouchStart}
+        onTouchEnd={this.handleTouchEnd}
+        onMouseOver={this.handleMouseOver}
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
+        onMouseOut={this.handleMouseOut}
+        isPlaying={this.props.isPlaying}
+      />
+    );
   }
 }
 

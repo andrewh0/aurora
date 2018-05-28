@@ -87,8 +87,9 @@ class UnconnectedEqualizer extends Component {
   }
 }
 
-const Equalizer = connect(mapStateToProps, mapDispatchToProps)(
-  UnconnectedEqualizer
-);
+const Equalizer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedEqualizer);
 
 export default Equalizer;

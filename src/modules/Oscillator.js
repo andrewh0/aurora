@@ -59,9 +59,7 @@ class UnconnectedOscillator extends Component {
     const enableSpreadControls = isFat(oscillator.type);
     return (
       <ModuleCard>
-        <ModuleTitle>
-          Oscillator {number + 1}
-        </ModuleTitle>
+        <ModuleTitle>Oscillator {number + 1}</ModuleTitle>
         <WaveformSelector
           currentWaveform={oscillator.type}
           onWaveformChange={this.handleWaveformChange}
@@ -115,8 +113,9 @@ class UnconnectedOscillator extends Component {
   }
 }
 
-const Oscillator = connect(mapStateToProps, mapDispatchToProps)(
-  UnconnectedOscillator
-);
+const Oscillator = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedOscillator);
 
 export default Oscillator;

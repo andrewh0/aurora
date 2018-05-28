@@ -54,6 +54,9 @@ class UnconnectedPanVol extends Component {
   }
 }
 
-const PanVol = connect(mapStateToProps, mapDispatchToProps)(UnconnectedPanVol);
+const PanVol = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UnconnectedPanVol);
 
 export default PanVol;
