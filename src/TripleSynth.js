@@ -3,8 +3,8 @@ import Tone from 'tone';
 export default class TripleSynth extends Tone.Monophonic {
   constructor(options) {
     super(options);
-    this.oscillator0 = new Tone.OmniOscillator(440, "fatsine");
-    this.oscillator1 = new Tone.OmniOscillator(440, "fatsine");
+    this.oscillator0 = new Tone.OmniOscillator(440, "fatsawtooth");
+    this.oscillator1 = new Tone.OmniOscillator(440, "fatsquare");
     this.oscillator2 = new Tone.OmniOscillator(440, "fatsine");
     this.frequency = new Tone.Signal(440, Tone.Type.Frequency);
     this.pan0 = new Tone.Panner().set('pan', 0);
