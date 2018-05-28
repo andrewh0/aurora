@@ -5,6 +5,7 @@ import Piano from './Piano';
 import StartAudioContextButton from './StartAudioContextButton';
 import SynthRouter from './SynthRouter';
 import SynthControl from './SynthControl';
+import Header from './Header';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
       <div>
         <StartAudioContextButton />
         <SynthRouter>
+          <Header />
           <Piano octaves={6} />
           <SynthControl />
         </SynthRouter>
