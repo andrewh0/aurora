@@ -11,6 +11,10 @@ const mapDispatchToProps = (dispatch: Function): Object => ({dispatch});
 const StyledCanvas = styled.canvas`
   width: 100%;
   height: 100px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  background-color: white;
+  margin: 8px;
 `;
 
 class UnconnectedAnalyzer extends Component {
@@ -37,10 +41,10 @@ class UnconnectedAnalyzer extends Component {
     this.frameId = window.requestAnimationFrame(this.analyzeWaveform);
   };
   drawWaveform(values: Uint8Array): void {
-    const canvasHeight = 100;
+    const canvasHeight = 150;
     const canvasWidth = 2000;
     const waveContext = this.canvas.getContext('2d');
-    waveContext.clearRect(0, 0, canvasWidth, canvasHeight + 10);
+    waveContext.clearRect(0, 0, canvasWidth, canvasHeight);
     waveContext.beginPath();
     waveContext.lineJoin = 'round';
     waveContext.lineWidth = 1;
