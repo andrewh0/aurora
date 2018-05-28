@@ -15,7 +15,6 @@ const Title = styled.h1`
 `;
 const Small = styled.p`
   font-size: 24px;
-  font-weight: 400;
   margin: 0;
 `;
 

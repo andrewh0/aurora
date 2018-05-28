@@ -16,7 +16,7 @@ const Button = styled.button`
   border: none;
   text-transform: uppercase;
   display: ${props => (props.isHidden ? 'none' : 'block')}
-  font-weight: 800;
+  font-weight: 700;
   font-size: 36px;
   cursor: pointer;
 `;
